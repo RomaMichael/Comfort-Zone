@@ -1,0 +1,469 @@
+.home {
+  height: 100%;
+  .top {
+    margin: 0px 50px 0px 50px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+    position: relative;
+    .description-container {
+      width: 500px;
+      .description-title {
+        h1 {
+          font-size: 50px;
+        }
+      }
+      .description-text {
+        p {
+          font-size: 20px;
+          line-height: 2;
+          color: #617d98;
+          width: 500px;
+        }
+      }
+      .shop-now-button {
+        A {
+          button {
+            width: 145px;
+            height: 50px;
+            background-color: #ab7a5f;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            &:hover {
+              color: black;
+              transition: 0.7s;
+              background-color: #bd9c89;
+            }
+          }
+        }
+      }
+    }
+    .main-pic-container {
+      width: 425px;
+      display: flex;
+      margin-right: 50px;
+
+      .pink-col {
+        min-width: 40px;
+        height: 300px;
+        background-color: #decbc0;
+        position: relative;
+        top: 100px;
+        left: 5px;
+        border-radius: 5px;
+      }
+      .pics {
+        position: relative;
+        z-index: 2;
+        .main-pic {
+          width: 425px;
+          height: 550px;
+          border-radius: 5px;
+        }
+        .small-pic {
+          width: 250px;
+          height: 165px;
+          position: relative;
+          bottom: 170px;
+          right: 90px;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+  .feature-products {
+    width: 100%;
+    height: 650px;
+    background-color: #f1f5f8;
+    position: relative;
+    bottom: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .fp-title {
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      h1 {
+        font-size: 40px;
+      }
+    }
+    .products-example {
+      display: flex;
+      justify-content: space-around;
+      width: 90%;
+      .presentation-products {
+        .present-pic {
+          height: 225px;
+          border-radius: 5px;
+          position: relative;
+          z-index: 2;
+          .present-img {
+            width: 25vw;
+            height: 38vh;
+            border-radius: 5px;
+          }
+          .onHover-home {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            .open-product {
+              .search-icon {
+                display: none;
+              }
+            }
+            &:hover {
+              background-color: black;
+              position: relative;
+              transition: 0.7s;
+              opacity: 0.7;
+              .open-product {
+                width: 50px;
+                height: 50px;
+                background-color: rgb(183, 119, 55);
+                border-radius: 100px;
+                opacity: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .search-icon {
+                  color: white;
+                  font-size: 20px;
+                  display: block;
+                  transition: 0.7;
+                }
+              }
+            }
+          }
+        }
+        .product-info {
+          display: flex;
+          width: 25vw;
+          justify-content: space-between;
+        }
+      }
+    }
+    .products-button {
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      button {
+        width: 150px;
+        height: 35px;
+        background-color: #ab7a5f;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        &:hover {
+          color: black;
+          transition: 0.7s;
+          background-color: #bd9c89;
+        }
+      }
+    }
+  }
+  .custom-furniture {
+    position: relative;
+    bottom: 210px;
+    background-color: #eaded7;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .furniture-title {
+      margin: 0px 50px 0px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      top: 70px;
+
+      h1 {
+        width: 450px;
+        color: #453227;
+      }
+      p {
+        width: 500px;
+        color: #795744;
+        line-height: 2;
+      }
+    }
+    .cards {
+      display: flex;
+      position: relative;
+      top: 100px;
+      justify-content: space-between;
+      margin: 0px 50px 0px 50px;
+
+      .mission {
+        .mission-circle {
+          width: 60px;
+          height: 60px;
+          background-color: #eaded7;
+          position: relative;
+          top: 20px;
+          border-radius: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            font-size: 32px;
+          }
+        }
+        background-color: #c5a491;
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 25vw;
+        height: 300px;
+        align-items: center;
+        justify-content: space-around;
+        h4 {
+          font-size: 24px;
+        }
+        p {
+          text-align: center;
+        }
+      }
+      .vision {
+        .vision-circle {
+          border-radius: 100px;
+          width: 60px;
+          height: 60px;
+          background-color: #eaded7;
+          position: relative;
+          top: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            font-size: 32px;
+          }
+        }
+        background-color: #c5a491;
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 25vw;
+        height: 300px;
+        align-items: center;
+        justify-content: space-around;
+        p {
+          text-align: center;
+        }
+        h4 {
+          font-size: 24px;
+        }
+      }
+      .history {
+        .history-circle {
+          border-radius: 100px;
+          width: 60px;
+          height: 60px;
+          background-color: #eaded7;
+          position: relative;
+          top: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            font-size: 32px;
+          }
+        }
+        background-color: #c5a491;
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 25vw;
+        height: 300px;
+        align-items: center;
+        p {
+          text-align: center;
+        }
+        h4 {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  .newsletter {
+    height: 200px;
+    margin: 0px 50px 0px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .text-newsletter {
+      display: flex;
+      flex-direction: column;
+      width: 570px;
+      h3 {
+        font-size: 32px;
+      }
+      p {
+        color: #617d98;
+        font-size: 16px;
+        line-height: 2;
+        width: 400px;
+      }
+    }
+    .input-newsletter {
+      input {
+        width: 380px;
+        height: 40px;
+        border: 2px solid black;
+        &::placeholder {
+          color: black;
+          padding: 10px;
+          font-family: arial;
+          font-weight: 500;
+          font-size: 17px;
+        }
+      }
+      button {
+        width: 120px;
+        height: 50px;
+        border: 2px solid black;
+        color: black;
+        background-color: #ab7a5f;
+        font-size: 17px;
+        font-family: arial;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .home {
+    .top {
+      height: 140vh;
+      .main-pic-container {
+        display: none;
+      }
+      .description-container {
+        .description-title {
+          h1 {
+            width: 80vw;
+          }
+        }
+        .description-text {
+          p {
+            width: 80vw;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    .feature-products {
+      height: 1100px;
+      .products-example {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .presentation-products {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .present-pic {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .present-img {
+              width: 60vw;
+            }
+          }
+          .product-info {
+            text-align: center;
+            width: 60vw;
+          }
+        }
+      }
+    }
+    .custom-furniture {
+      height: 250vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .furniture-title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 90vw;
+        height: 100vw;
+        h1 {
+          width: 100vw;
+        }
+        p {
+          width: 70vw;
+        }
+      }
+      .cards {
+        height: 170vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+
+        .mission {
+          height: 200vh;
+          width: 75vw;
+        }
+        .vision {
+          height: 200vh;
+          width: 75vw;
+        }
+
+        .history {
+          height: 200vh;
+          width: 75vw;
+        }
+      }
+    }
+    .newsletter {
+      margin: 0px 50px 0px 50px;
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .text-newsletter {
+        display: flex;
+        align-items: center;
+        h3 {
+          text-align: center;
+          width: 100vw;
+        }
+        p {
+          width: 70vw;
+        }
+      }
+      .input-newsletter {
+        text-align: center;
+        input {
+          width: 70vw;
+        }
+        button {
+          width: 30vw;
+        }
+      }
+    }
+  }
+}

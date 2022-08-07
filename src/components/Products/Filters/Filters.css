@@ -1,0 +1,153 @@
+.filters-component {
+  position: relative;
+  top: 70px;
+  width: 220px;
+  min-height: 500px;
+}
+.filters-component .filters-section {
+  width: 210px;
+  min-height: 500px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10px;
+}
+.filters-component .filters-section .search-input {
+  width: 150px;
+}
+.filters-component .filters-section .search-input .input-search {
+  width: 180px;
+  height: 35px;
+  background-color: #f1f5f8;
+  border: none;
+  border-radius: 5px;
+}
+.filters-component .filters-section .search-input .input-search::-moz-placeholder {
+  position: relative;
+  left: 10px;
+}
+.filters-component .filters-section .search-input .input-search:-ms-input-placeholder {
+  position: relative;
+  left: 10px;
+}
+.filters-component .filters-section .search-input .input-search::placeholder {
+  position: relative;
+  left: 10px;
+}
+.filters-component .filters-section .buttons {
+  display: flex;
+  flex-direction: column;
+}
+.filters-component .filters-section .buttons .buttons-title h5 {
+  font-weight: 500;
+}
+.filters-component .filters-section .buttons button {
+  width: 100px;
+  height: 25px;
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  color: #617d98;
+  text-align: start;
+  cursor: pointer;
+}
+.filters-component .filters-section .buttons button :active {
+  border-bottom: 1px solid black;
+}
+.filters-component .filters-section .company .company-title h5 {
+  font-weight: 500;
+}
+.filters-component .filters-section .company select {
+  background-color: #f1f5f8;
+  border: none;
+  width: 80px;
+  height: 25px;
+}
+.filters-component .filters-section .colors-buttons .colors-buttons-title h5 {
+  font-weight: 500;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors {
+  display: flex;
+  gap: 5px;
+  height: 20px;
+  align-items: center;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors button {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .all-button {
+  width: 40px;
+  height: 25px;
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  color: #617d98;
+  text-align: start;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .red-button {
+  background-color: #ff0000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .red-button .v-red {
+  color: white;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .green-button {
+  background-color: #00ff00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .green-button .v-green {
+  color: white;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .blue-button {
+  background-color: #0000ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .blue-button .v-blue {
+  color: white;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .black-button {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .black-button .v-black {
+  color: white;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .yellow-button {
+  background-color: #ffb900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filters-component .filters-section .colors-buttons .buttons-colors .yellow-button .v-yellow {
+  color: white;
+}
+.filters-component .filters-section .price p {
+  color: gray;
+}
+.filters-component .filters-section .free-shipping {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.filters-component .filters-section .clear-filters .clear-filters-button {
+  background-color: #bb2525;
+  width: 110px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+}/*# sourceMappingURL=Filters.css.map */

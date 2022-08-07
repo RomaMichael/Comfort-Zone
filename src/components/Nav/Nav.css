@@ -1,0 +1,133 @@
+.nav .nav-container {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  justify-content: space-between;
+  position: relative;
+  z-index: 3;
+}
+.nav .nav-container .logo {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+.nav .nav-container .logo img {
+  width: 175px;
+  height: 50px;
+}
+.nav .nav-container .links ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.nav .nav-container .links ul a {
+  text-decoration: none;
+}
+.nav .nav-container .links ul a li {
+  min-width: 60px;
+  height: 50px;
+  text-align: center;
+}
+.nav .nav-container .links ul a li:hover {
+  border-bottom: 1px solid black;
+}
+.nav .nav-container .icons {
+  display: flex;
+  margin-right: 50px;
+  height: 70px;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+.nav .nav-container .icons .cart {
+  width: 130px;
+  letter-spacing: 0.1rem;
+  font-size: 24px;
+  display: flex;
+}
+.nav .nav-container .icons .cart a {
+  text-decoration: none;
+  color: black;
+}
+.nav .nav-container .icons .cart .sum-orders {
+  position: relative;
+  top: 25px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 100px;
+  background-color: #ab7a5f;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav .nav-container .icons .cart .sum-orders p {
+  font-size: 12px;
+}
+.nav .nav-container .icons .login {
+  width: 120px;
+  font-size: 24px;
+  letter-spacing: 0.1rem;
+}
+.nav .nav-container .menu-bars {
+  display: none;
+}
+.nav .all-links {
+  display: none;
+}
+
+@media screen and (max-width: 850px) {
+  .nav .nav-container .links ul {
+    display: none;
+  }
+  .nav .nav-container .icons {
+    display: none;
+  }
+  .nav .nav-container .menu-bars {
+    width: 50px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 20px;
+  }
+  .nav .nav-container .menu-bars i {
+    font-size: 30px;
+  }
+}
+@-webkit-keyframes slideRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
+@keyframes slideRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
+@-webkit-keyframes menuText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50px);
+  }
+}
+@keyframes menuText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50px);
+  }
+}/*# sourceMappingURL=Nav.css.map */
