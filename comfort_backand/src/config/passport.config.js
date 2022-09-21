@@ -10,7 +10,7 @@ const verifyCallback = async (username, password, cb) => {
   }
   const isValid = validPassword(password, user.hash, user.salt);
   if (!isValid) {
-    console.log("Wring credentials");
+    console.log("Wrong credentials");
     return cb(null, false);
   }
 
