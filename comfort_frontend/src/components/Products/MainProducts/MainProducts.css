@@ -1,0 +1,75 @@
+.main-product-component .products-main {
+  margin: 0px 20px 0px 20px;
+  margin-top: 60px;
+  display: flex;
+  gap: 30px;
+}
+.main-product-component .products-main .cards-section .cards-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 75vw;
+  position: relative;
+  right: 40px;
+}
+.main-product-component .products-main .cards-section .cards-title .buttons-section {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.main-product-component .products-main .cards-section .cards-title .buttons-section .organize-buttons {
+  display: flex;
+  gap: 15px;
+}
+.main-product-component .products-main .cards-section .cards-title .buttons-section .organize-buttons button {
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.main-product-component .products-main .cards-section .cards-title .buttons-section .organize-buttons .cubes-organize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-product-component .products-main .cards-section .cards-title .buttons-section .organize-buttons .rows-organize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-product-component .products-main .cards-section .cards-title .buttons-section .products-count {
+  color: #324d67;
+}
+.main-product-component .products-main .cards-section .cards-title .right-cards-section .sorts {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.main-product-component .products-main .cards-section .cards-title .right-cards-section .sorts select {
+  border: none;
+  height: 30px;
+}
+.main-product-component .products-main .cards-section .cards-title .right-cards-section .sorts select .option-high {
+  background-color: red;
+}
+.main-product-component .products-main .cards-section .cards-title .right-cards-section .sorts select .option-high .button-high {
+  font-size: 40px;
+}
+
+@media screen and (max-width: 850px) {
+  .products-main .cards-section .cards-title {
+    width: 70vw;
+    margin-left: 20px;
+  }
+  .products-main .cards-section .the-cards {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 600px) {
+  .products-main .cards-section .cards-title {
+    display: flex;
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=MainProducts.css.map */

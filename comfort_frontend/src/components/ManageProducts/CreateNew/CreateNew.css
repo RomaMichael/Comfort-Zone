@@ -1,0 +1,46 @@
+.createNew {
+  display: flex;
+  justify-content: center;
+}
+.createNew .create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.createNew .create-form .name-price {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+.createNew .create-form .name-price input {
+  width: 150px;
+  height: 30px;
+  border-radius: 8px;
+}
+.createNew .create-form .category-brand {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+.createNew .create-form .category-brand select {
+  width: 150px;
+  height: 30px;
+  border-radius: 8px;
+}
+.createNew .create-form .colors-section {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  align-items: space-between;
+}
+.createNew .create-form .colors-section .colors {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+}
+.createNew .create-form button {
+  width: "90px";
+}
+.createNew .create-form .shipping .shipping-cost input {
+  width: 100px;
+}/*# sourceMappingURL=CreateNew.css.map */

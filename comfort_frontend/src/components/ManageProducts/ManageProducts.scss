@@ -1,0 +1,25 @@
+.manage-products {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  .manage-container {
+    width: 90%;
+    .manage-title {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      width: 500px;
+      justify-content: space-between;
+      margin-bottom: 50px;
+      button {
+        height: 30px;
+        width: 120px;
+        border: none;
+        border-radius: 7px;
+        background-color: blue;
+        color: white;
+      }
+    }
+  }
+}

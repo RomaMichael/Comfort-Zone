@@ -1,0 +1,30 @@
+.signUp {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 65vh;
+    height: 370px;
+    label {
+      width: 320px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .submit-button {
+      margin-top: 20px;
+      background-color: #ab7b60;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      width: 170px;
+      height: 30px;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+.orderRow {
+  height: 130px;
+  width: 105%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .img-and-name {
+    display: flex;
+    gap: 10px;
+    width: 285px;
+    img {
+      width: 120px;
+      height: 100px;
+      border-radius: 5px;
+    }
+    .name-and-color {
+      align-items: center;
+    }
+    .price-mobile {
+      display: none;
+    }
+  }
+  .price {
+    width: 285px;
+    text-align: center;
+    position: relative;
+    right: 45px;
+  }
+  .quantity {
+    .counterProduct {
+      width: 285px;
+      text-align: center;
+    }
+  }
+  .subtotal-row {
+    width: 285px;
+    text-align: center;
+  }
+  .del-button {
+    button {
+      width: 25px;
+      height: 25px;
+      border: none;
+      border-radius: 5px;
+      background-color: #bb2525;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .orderRow {
+    .img-and-name {
+      .name-and-color {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        p {
+          font-size: 14px;
+        }
+        .price-mobile {
+          display: block;
+        }
+      }
+    }
+    .subtotal-row {
+      display: none;
+    }
+    .price {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.user-profile {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 40px;
+  .user-props {
+    width: 90%;
+
+    .user-pic {
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+    .name {
+      display: flex;
+      align-items: center;
+      width: 350px;
+      justify-content: space-between;
+    }
+  }
+}

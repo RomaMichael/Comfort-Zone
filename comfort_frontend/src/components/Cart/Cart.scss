@@ -1,0 +1,196 @@
+.cartPage {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .orders-section {
+    width: 95%;
+    min-height: 300px;
+
+    .empty-cart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h1 {
+        color: #102a42;
+        font-size: 40px;
+      }
+      button {
+        width: 75px;
+        height: 35px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #ab7a5f;
+        letter-spacing: 0.1rem;
+        &:hover {
+          color: black;
+          transition: 0.7s;
+          background-color: #bd9c89;
+        }
+      }
+    }
+
+    .orders-title {
+      width: 100%;
+      ul {
+        list-style-type: none;
+        display: flex;
+
+        justify-content: space-between;
+
+        li {
+          width: 285px;
+          text-align: center;
+        }
+      }
+    }
+    .cart-buttons {
+      position: relative;
+      top: 50px;
+      width: 105%;
+      display: flex;
+      justify-content: space-between;
+      button {
+        width: 180px;
+        height: 45px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+      }
+      :nth-child(1) {
+        background-color: #ab7a5f;
+        border-radius: 5px;
+      }
+      :nth-child(2) {
+        background-color: black;
+      }
+    }
+    .payment-container {
+      width: 105%;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 15px;
+    }
+    .payment {
+      width: 430px;
+      height: 250px;
+      border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .subtotal-payment {
+        width: 85%;
+        .without-shipping {
+          display: flex;
+          justify-content: space-between;
+          width: 250px;
+        }
+        .shipping-cost {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 250px;
+        }
+        .total-payment {
+          display: flex;
+          justify-content: space-between;
+          width: 250px;
+          height: 100px;
+
+          h4 {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+    .login-button {
+      width: 430px;
+      height: 40px;
+      background-color: #ab7a5f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .order-button {
+      width: 430px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: 700;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  }
+  .empty-cart {
+    text-align: center;
+    h1 {
+      width: 50vw;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .cartPage {
+    height: auto;
+    .orders-section {
+      .orders-title {
+        ul {
+          li {
+            display: none;
+          }
+        }
+      }
+      .cart-buttons {
+        height: 30vh;
+        button {
+          width: 180px;
+          height: 45px;
+          border: none;
+          border-radius: 5px;
+          color: white;
+          font-size: 16px;
+        }
+        :nth-child(1) {
+          height: 45px;
+          width: 25vw;
+          font-size: 15px;
+        }
+        :nth-child(2) {
+          width: 35vw;
+          font-size: 15px;
+        }
+      }
+    }
+
+    .payment-container {
+      height: 200vh;
+
+      .payment {
+        width: 90vw;
+        .subtotal-payment {
+          .without-shipping {
+            width: 60vw;
+          }
+          .shipping-cost {
+            width: 60vw;
+          }
+          .total-payment {
+            width: 60vw;
+          }
+        }
+      }
+      .login-button {
+        margin: auto;
+        width: 50vw;
+      }
+    }
+  }
+}

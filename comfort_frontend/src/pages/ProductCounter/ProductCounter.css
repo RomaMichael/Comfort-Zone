@@ -1,0 +1,23 @@
+.productCount {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.productCount .minus-button {
+  width: 32px;
+  height: 36px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+.productCount .plus-button {
+  width: 32px;
+  height: 36px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}/*# sourceMappingURL=ProductCounter.css.map */

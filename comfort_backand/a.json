@@ -1,0 +1,45 @@
+{
+  "$__": {
+    "activePaths": {
+      "paths": {
+        "role": "init",
+        "salt": "init",
+        "hash": "init",
+        "email": "init",
+        "username": "init",
+        "_id": "init",
+        "cartState": "init",
+        "avatar": "init"
+      },
+      "states": {
+        "require": {},
+        "default": {},
+        "init": {
+          "_id": true,
+          "username": true,
+          "email": true,
+          "hash": true,
+          "salt": true,
+          "role": true,
+          "cartState": true,
+          "avatar": true
+        }
+      }
+    },
+    "skipId": true
+  },
+  "$isNew": false,
+  "_doc": {
+    "_id": "62f91f16ccdb09929434beb5",
+    "username": "Roman",
+    "email": "romab1990@gmail.com",
+    "hash": "a34da59536219e6666531888c746194dd421a84f04320e8a91b058774e0bf5904bbd14db1c82d209d407866cf9cb7c0856fbe18bf59510628e8efb016b54f5c2",
+    "salt": "0d61b338158106daac00043f9204686faebbc1a8c1d848e33606a01fa41bd78c",
+    "role": "admin",
+    "cartState": [],
+    "avatar": {
+      "url": "http://res.cloudinary.com/dwqnpqnl0/image/upload/v1660493591/avatars/c9c1610d-d16c-47da-8c68-a4bc6cd443e0.jpg",
+      "publicId": "avatars/c9c1610d-d16c-47da-8c68-a4bc6cd443e0"
+    }
+  }
+}

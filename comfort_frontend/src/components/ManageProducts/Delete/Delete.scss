@@ -1,0 +1,43 @@
+.search-delete {
+  input {
+    width: 250px;
+    height: 30px;
+    border-radius: 15px;
+  }
+}
+
+.delete-products {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: auto;
+
+  .product-delete {
+    width: 500px;
+    border: 1px solid grey;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-around;
+
+    .product-props {
+      display: flex;
+      width: 500px;
+      justify-content: space-between;
+      align-items: center;
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+      }
+
+      button {
+        color: white;
+        background-color: red;
+        width: 100px;
+        height: 30px;
+        border: none;
+        border-radius: 10px;
+      }
+    }
+  }
+}

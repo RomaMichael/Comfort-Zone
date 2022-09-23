@@ -1,0 +1,21 @@
+.user-profile {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 40px;
+}
+.user-profile .user-props {
+  width: 90%;
+}
+.user-profile .user-props .user-pic img {
+  width: 200px;
+  height: 200px;
+}
+.user-profile .user-props .name {
+  display: flex;
+  align-items: center;
+  width: 350px;
+  justify-content: space-between;
+}/*# sourceMappingURL=UserProfile.css.map */

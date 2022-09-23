@@ -1,0 +1,10 @@
+.update-products {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.update-products .search-to-update input {
+  width: 250px;
+  height: 30px;
+  border-radius: 15px;
+}/*# sourceMappingURL=Update.css.map */

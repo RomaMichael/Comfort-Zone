@@ -1,0 +1,12 @@
+.update-products {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .search-to-update {
+    input {
+      width: 250px;
+      height: 30px;
+      border-radius: 15px;
+    }
+  }
+}
