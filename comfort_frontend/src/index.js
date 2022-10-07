@@ -10,7 +10,8 @@ import { store } from "./Redux/store";
 import { Provider } from "react-redux";
 import { AdminProvider } from "./context/AdminProvider";
 import { UserProvider } from "./context/UsersProvider";
-import { MessageProvider } from "./context/MessageProvider";
+import { ReportProvider } from "./context/ReportProvider";
+import { StatisticProvider } from "./context/StatisticProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,9 +21,11 @@ root.render(
         <AuthProvider>
           <AdminProvider>
             <UserProvider>
-              <MessageProvider>
+              <ReportProvider>
+                {/* <StatisticProvider> */}
                 <App />
-              </MessageProvider>
+                {/* </StatisticProvider> */}
+              </ReportProvider>
             </UserProvider>
           </AdminProvider>
         </AuthProvider>

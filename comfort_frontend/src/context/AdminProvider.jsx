@@ -8,7 +8,6 @@ export function AdminProvider({ children }) {
   const { userAuth } = useAuthContext();
 
   const checkAdmin = async () => {
-   
     const response = await fetch("http://localhost:8005/users/check-admin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -18,10 +17,8 @@ export function AdminProvider({ children }) {
     const user = await response.json();
 
     if (user._doc.role === "admin") {
-    
       setAdminAuth(true);
     } else {
-     
       setAdminAuth(false);
     }
     return user;

@@ -86,7 +86,7 @@ export default function Products() {
   //FILTER
 
   const filter = () => {
-    let filtered = products;
+    let filtered = [...products];
 
     if (filterCategory) {
       filtered = filtered.filter(

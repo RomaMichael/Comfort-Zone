@@ -9,25 +9,24 @@ export default function BasicPopover() {
   const { userAuth } = useAuthContext();
   const { users, isLoadingUsers } = useUsers();
 
-  const admins = users.filter((user) => user.role === "admin");
-  console.log(admins);
+  const [reportToAdmin, setReportToAdmin] = useState({
+    sender: userAuth._id,
 
-  const [message, setMessage] = useState({
-    sender: { userAuth },
-    reciver: { admins },
-    message: "",
+    report: "",
   });
 
-  const sendReport = async () => {
+  const sendReport = async (event) => {
+    event.preventDefault();
     const formDataMessage = new FormData();
-    formDataMessage.append("sender", JSON.stringify(userAuth));
-    formDataMessage.append("reciver", JSON.stringify(message.reciver));
-    formDataMessage.append("message", message.message);
-    console.log(message);
-    const response = await fetch("http://localhost:8005/messages/send", {
+    formDataMessage.append("sender", reportToAdmin.sender);
+
+    formDataMessage.append("report", reportToAdmin.report);
+
+    const response = await fetch("http://localhost:8005/reports/send", {
       method: "POST",
       body: formDataMessage,
     });
+    const responseMessage = await response.json();
   };
 
   const handleClick = (event) => {
@@ -73,29 +72,34 @@ export default function BasicPopover() {
               flexDirection: "column",
             }}
           >
-            <h3>Write a message to admin</h3>
-            <input
-              type="text"
-              style={{ width: "400px", height: "40px", borderRadius: "7px" }}
-              placeholder="Write a message..."
-              onChange={(e) =>
-                setMessage((prev) => ({ ...prev, message: e.target.value }))
-              }
-            />
-            <button
-              style={{
-                width: "70px",
-                height: "30px",
-                marginTop: "30px",
-                backgroundColor: "blue",
-                color: "white",
-                border: "none",
-                borderRadius: "7px",
-              }}
-              onClick={sendReport}
-            >
-              Send
-            </button>
+            <form onSubmit={sendReport}>
+              <h3>Write a message to admin</h3>
+              <input
+                type="text"
+                style={{ width: "400px", height: "40px", borderRadius: "7px" }}
+                placeholder="Write a message..."
+                onChange={(e) =>
+                  setReportToAdmin({
+                    ...reportToAdmin,
+                    report: e.target.value,
+                  })
+                }
+              />
+              <button
+                type="submit"
+                style={{
+                  width: "70px",
+                  height: "30px",
+                  marginTop: "30px",
+                  backgroundColor: "blue",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "7px",
+                }}
+              >
+                Send
+              </button>
+            </form>
           </div>
         </Typography>
       </Popover>

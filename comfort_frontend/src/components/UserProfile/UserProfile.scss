@@ -8,7 +8,18 @@
   .user-props {
     width: 90%;
 
-    .user-pic {
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      .view-history {
+        border: none;
+        border-radius: 8px;
+        width: 150px;
+        height: 40px;
+        font-weight: 700;
+        background-color: greenyellow;
+      }
       img {
         width: 200px;
         height: 200px;

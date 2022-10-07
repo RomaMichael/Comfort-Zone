@@ -7,18 +7,39 @@
     width: 90%;
     .manage-title {
       display: flex;
-      align-items: center;
-      gap: 20px;
-      width: 500px;
-      justify-content: space-between;
-      margin-bottom: 50px;
-      button {
-        height: 30px;
-        width: 120px;
-        border: none;
-        border-radius: 7px;
-        background-color: blue;
-        color: white;
+      flex-direction: column;
+      .admin-buttons {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        .product-manage {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          width: 500px;
+          justify-content: space-between;
+          margin-bottom: 50px;
+          button {
+            height: 30px;
+            width: 120px;
+            border: none;
+            border-radius: 7px;
+            background-color: blue;
+            color: white;
+            font-weight: 500;
+          }
+        }
+        .information {
+          button {
+            height: 30px;
+            width: 120px;
+            border: none;
+            border-radius: 7px;
+            background-color: orangered;
+            color: white;
+            font-weight: 500;
+          }
+        }
       }
     }
   }

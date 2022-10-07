@@ -2,7 +2,7 @@
   position: relative;
   top: 70px;
   width: 220px;
-  min-height: 500px;
+  min-height: 450px;
 }
 .filters-component .filters-section {
   width: 210px;
@@ -16,7 +16,7 @@
 }
 .filters-component .filters-section .search-input .input-search {
   width: 180px;
-  height: 35px;
+  height: 25px;
   background-color: #f1f5f8;
   border: none;
   border-radius: 5px;
@@ -42,7 +42,7 @@
 }
 .filters-component .filters-section .buttons button {
   width: 100px;
-  height: 25px;
+  height: 22px;
   padding: 5px;
   background-color: transparent;
   border: none;
@@ -61,7 +61,7 @@
   background-color: #f1f5f8;
   border: none;
   width: 80px;
-  height: 25px;
+  height: 20px;
 }
 .filters-component .filters-section .colors-buttons .colors-buttons-title h5 {
   font-weight: 500;

@@ -3,12 +3,24 @@ import "../Cart/Cart.css";
 import { Link } from "react-router-dom";
 import OrderRow from "./OrderRow/OrderRow";
 import { useAuthContext } from "../../context/AuthProvider";
+import OrderConfirm from "../../MuiBlocks/OrderConfirm";
 
 export default function Cart() {
   const [subTotal, setSubTotal] = useState(0);
   const [shippingPayment, setShippingPayment] = useState(0);
+  const { userAuth, updateCart, setUserAuth, confirm } = useAuthContext();
+  const { cartState } = userAuth;
 
-  const { userAuth, updateCart, setUserAuth } = useAuthContext();
+  const confirmation = () => {
+    setUserAuth((prev) => ({
+      ...prev,
+      orders: { cartState },
+
+      cartState: [],
+    }));
+
+    confirm(userAuth);
+  };
 
   useEffect(() => {
     let totalShipping = 0;
@@ -31,10 +43,10 @@ export default function Cart() {
     });
   }, [userAuth]);
 
-  function clearCart() {
+  const clearCart = () => {
     setUserAuth({ ...userAuth, cartState: [] });
     updateCart([]);
-  }
+  };
 
   return (
     <div className="cartPage">
@@ -84,7 +96,10 @@ export default function Cart() {
                 </div>
               </div>
               {userAuth.isLoggedIn ? (
-                <button className="order-button">Order</button>
+                <OrderConfirm
+                  confirmation={confirmation}
+                  clearCart={clearCart}
+                />
               ) : (
                 <Link to="/Login">
                   <button className="login-button">LOGIN</button>

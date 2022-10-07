@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -11,8 +11,6 @@ export default function UpdateProps({ product }) {
   const { setProducts } = useProducts();
   const [updatedProduct, setUpdatedProduct] = useState(product);
 
-  //TODO: remove
-  const [isLoading, setIsLoading] = useState(false);
   const [redColor, setRedColor] = useState(false);
   const [greenColor, setGreenColor] = useState(false);
   const [blueColor, setBlueColor] = useState(false);
@@ -46,9 +44,8 @@ export default function UpdateProps({ product }) {
       );
       if (response.status === 200) {
         setProducts((products) => {
-          console.log(products);
-          const index = products.findIndex((p) => (p._id = updatedProduct._id));
-          debugger;
+          const index = products.findIndex((p) => p._id === updatedProduct._id);
+
           const updatedProducts = [...products];
           updatedProducts[index] = updatedProduct;
           return updatedProducts;
@@ -178,7 +175,7 @@ export default function UpdateProps({ product }) {
           <Typography style={{ display: "flex", alignItems: "center" }}>
             Name:{" "}
             <span style={{ color: "blue", fontWeight: "700" }}>
-              {isLoading ? <p>loading</p> : <p>{product.name}</p>}
+              <p>{product.name}</p>
             </span>
           </Typography>
         </AccordionSummary>
@@ -206,7 +203,7 @@ export default function UpdateProps({ product }) {
           <Typography style={{ display: "flex", alignItems: "center" }}>
             Price:{" "}
             <span style={{ color: "blue", fontWeight: "700" }}>
-              {isLoading ? <p>Loading</p> : <p>{product.price}</p>}
+              <p>{product.price}</p>
             </span>
           </Typography>
         </AccordionSummary>
@@ -257,7 +254,7 @@ export default function UpdateProps({ product }) {
           <Typography style={{ display: "flex", alignItems: "center" }}>
             Category:{" "}
             <span style={{ color: "blue", fontWeight: "700" }}>
-              {isLoading ? <p>Loading</p> : <p>{product.category}</p>}
+              <p>{product.category}</p>
             </span>
           </Typography>
         </AccordionSummary>
@@ -289,7 +286,7 @@ export default function UpdateProps({ product }) {
           <Typography style={{ display: "flex", alignItems: "center" }}>
             Brand:{" "}
             <span style={{ color: "blue", fontWeight: "700" }}>
-              {isLoading ? <p>Loading</p> : <p>{product.brand}</p>}
+              <p>{product.brand}</p>
             </span>
           </Typography>
         </AccordionSummary>
@@ -318,26 +315,23 @@ export default function UpdateProps({ product }) {
         >
           <Typography style={{ display: "flex", alignItems: "center" }}>
             <p> Shipping: </p>
-            {isLoading ? (
-              <p>Loading</p>
-            ) : (
-              <div>
-                {" "}
-                {product.shipping ? (
-                  <div>
+
+            <div>
+              {" "}
+              {product.shipping ? (
+                <div>
+                  {" "}
+                  <p> {product.shippingCost}</p>
+                </div>
+              ) : (
+                <div>
+                  <p style={{ color: "blue", fontWeight: "700" }}>
                     {" "}
-                    <p> {product.shippingCost}</p>
-                  </div>
-                ) : (
-                  <div>
-                    <p style={{ color: "blue", fontWeight: "700" }}>
-                      {" "}
-                      Free shipping
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
+                    Free shipping
+                  </p>
+                </div>
+              )}
+            </div>
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -375,27 +369,23 @@ export default function UpdateProps({ product }) {
                 className="colors-of-product"
                 style={{ display: "flex", gap: "10px" }}
               >
-                {isLoading ? (
-                  <p>Loading</p>
-                ) : (
-                  <div>
-                    {" "}
-                    {product.colors.map((color, i) => (
-                      <div
-                        style={{
-                          backgroundColor: color,
-                          width: "25px",
-                          height: "25px",
-                          borderRadius: "100px",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                        key={i}
-                      ></div>
-                    ))}
-                  </div>
-                )}
+                <div>
+                  {" "}
+                  {product.colors.map((color, i) => (
+                    <div
+                      style={{
+                        backgroundColor: color,
+                        width: "25px",
+                        height: "25px",
+                        borderRadius: "100px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      key={i}
+                    ></div>
+                  ))}
+                </div>
               </div>
             </span>
           </Typography>

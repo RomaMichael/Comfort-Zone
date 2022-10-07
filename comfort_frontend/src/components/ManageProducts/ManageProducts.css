@@ -9,17 +9,36 @@
 }
 .manage-products .manage-container .manage-title {
   display: flex;
+  flex-direction: column;
+}
+.manage-products .manage-container .manage-title .admin-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.manage-products .manage-container .manage-title .admin-buttons .product-manage {
+  display: flex;
   align-items: center;
   gap: 20px;
   width: 500px;
   justify-content: space-between;
   margin-bottom: 50px;
 }
-.manage-products .manage-container .manage-title button {
+.manage-products .manage-container .manage-title .admin-buttons .product-manage button {
   height: 30px;
   width: 120px;
   border: none;
   border-radius: 7px;
   background-color: blue;
   color: white;
+  font-weight: 500;
+}
+.manage-products .manage-container .manage-title .admin-buttons .information button {
+  height: 30px;
+  width: 120px;
+  border: none;
+  border-radius: 7px;
+  background-color: orangered;
+  color: white;
+  font-weight: 500;
 }/*# sourceMappingURL=ManageProducts.css.map */

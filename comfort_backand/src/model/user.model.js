@@ -24,7 +24,9 @@ const userSchema = new Schema({
   },
   messages: { type: Array, required: true },
   avatar: avatarSchema,
-  cartState: { type: [productSchema] },
+  cartState: { type: [productSchema], required: false },
+  orders: { type: Object, require: false },
+  totalSpend: { type: Number, require: true },
 });
 
 const User = mongoose.model("User", userSchema);

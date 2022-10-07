@@ -16,7 +16,7 @@ export function UserProvider({ children }) {
   useEffect(() => {
     getUsers();
   }, []);
-  console.log(users);
+
   const value = { users, isLoadingUsers };
   return (
     <UsersContext.Provider value={value}>{children}</UsersContext.Provider>

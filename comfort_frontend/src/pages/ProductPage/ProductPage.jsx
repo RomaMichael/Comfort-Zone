@@ -49,7 +49,7 @@ export function ProductPage() {
   const setPic = (e) => {
     setMainPic(e);
   };
-  console.log(currentProduct);
+
   return (
     <div className="productPage">
       <div className="product-page">

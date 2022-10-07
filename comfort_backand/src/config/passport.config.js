@@ -25,6 +25,7 @@ const serialize = (user, cb) => {
 };
 
 const deserialize = async (userId, cb) => {
+  console.log(userId);
   try {
     const user = await User.findById(userId);
 

@@ -33,6 +33,7 @@ export default function CreateNew() {
     formData.append("brand", product.brand);
     formData.append("text", product.text);
     formData.append("img", product.img);
+
     const response = await fetch(
       "http://localhost:8005/products/create-product",
       {

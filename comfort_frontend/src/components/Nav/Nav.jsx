@@ -123,18 +123,25 @@ export default function Nav() {
             {userAuth.isLoggedIn ? (
               <div
                 className="logout"
-                style={{ display: "flex", alignItems: "center" }}
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "15px",
+                }}
               >
-                <h3 style={{ cursor: "pointer" }} onClick={logout}>
+                <h3
+                  style={{ cursor: "pointer", fontSize: "20px" }}
+                  onClick={logout}
+                >
                   LogOut
                 </h3>
                 <div className="user-avatar">
                   <img
-                    src={userAuth ? userAuth.avatar.url : null}
+                    src={userAuth.isLoggedIn ? userAuth.avatar.url : null}
                     alt="avatar"
                     style={{
-                      width: "30px",
-                      height: "30px",
+                      width: "50px",
+                      height: "50px",
                       borderRadius: "20px",
                     }}
                   />

@@ -1,36 +1,66 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { useAdminContext } from "../../context/AdminProvider";
 import { useAuthContext } from "../../context/AuthProvider";
-import { useMessages } from "../../context/MessageProvider";
-
+import { useReport } from "../../context/ReportProvider";
 import { useUsers } from "../../context/UsersProvider";
+
 import "./Inbox.css";
 
 export default function Inbox() {
+  const { reports, getMessages } = useReport();
+  const { adminAuth } = useAdminContext();
   const { users } = useUsers();
-  const { messages } = useMessages();
   const { userAuth } = useAuthContext();
+  const [usersListState, setUsersListState] = useState(false);
+  useEffect(() => {
+    getMessages();
+  }, []);
 
-  console.log(messages);
+  const usersChat = users.filter((user) => user._id !== userAuth._id);
+
+  const showUsers = () => {
+    setUsersListState(!usersListState);
+  };
+
   return (
     <div className="inbox-page">
-      {/* <div className="search-users">
-        {users.map((user) => (
-          <p>{user.username}</p>
-        ))}
-      </div> */}
+      <div>
+        <div className="button-users-container">
+          <button className="show-users-button" onClick={showUsers}>
+            Users List
+          </button>
+        </div>
+      </div>
+      {usersListState ? (
+        <div className="search-users" style={{ display: "flex", gap: "20px" }}>
+          {usersChat.map((user) => (
+            <div>
+              <img
+                src={user.avatar.url}
+                alt="avatar"
+                style={{
+                  width: "50px",
+                  height: "50px",
+                  borderRadius: "100px",
+                }}
+              />
+              <p>{user.username}</p>
+            </div>
+          ))}
+        </div>
+      ) : null}
 
       <div className="inbox-container">
         <div className="chats-list">
-          {userAuth.isLoggedIn ? (
+          {adminAuth ? (
             <div>
               {" "}
-              {messages ? (
+              {reports ? (
                 <div>
                   {" "}
-                  {messages.map((message) => (
+                  {reports.map((report, i) => (
                     <div
-                      key={message.id}
+                      key={report._id}
                       style={{
                         display: "flex",
                         gap: "25px",
@@ -38,7 +68,7 @@ export default function Inbox() {
                       }}
                     >
                       <img
-                        src={message.sender.avatar.url}
+                        src={report.avatar}
                         alt="avatar"
                         style={{
                           width: "50px",
@@ -46,24 +76,20 @@ export default function Inbox() {
                           borderRadius: "100px",
                         }}
                       />
-                      <p style={{ fontWeight: "700" }}>
-                        {message.sender.username}
-                      </p>
+                      <p style={{ fontWeight: "700" }}>{report.username}</p>
+                      <p>{report.report}</p>
                     </div>
                   ))}
                 </div>
               ) : null}
             </div>
-          ) : (
-            <p>Loading</p>
-          )}
+          ) : null}
         </div>
         <div className="current-chat">
-          <div className="conversation-window"></div>
-          <div className="input-and-send">
-            <button>Send</button>
-            <input type="text" />
-          </div>
+          {/* <div className="conversation-window">   <div className="input-and-send">
+           <button>Send</button>
+           <input type="text" />
+         </div></div> */}
         </div>
       </div>
     </div>

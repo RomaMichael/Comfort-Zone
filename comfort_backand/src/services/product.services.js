@@ -39,11 +39,11 @@ const updateProduct = async (id, product) => {
 const deleteProduct = async (id) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(id);
+    await deleteFile(deletedProduct.img);
 
     if (!deletedProduct) {
     }
-    await deleteFile(deletedProduct.img);
-   
+
     return deletedProduct;
   } catch (error) {
     console.log(error);
@@ -51,7 +51,6 @@ const deleteProduct = async (id) => {
 };
 
 const getOneProduct = async (id) => {
-
   try {
     const oneProduct = await Product.findById(id);
 

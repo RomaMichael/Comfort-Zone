@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAdminContext } from "../../context/AdminProvider";
 import { useAuthContext } from "../../context/AuthProvider";
 import Report from "../../MuiBlocks/Report";
@@ -8,6 +8,7 @@ import "./UserAccess.css";
 export default function AdminAccess({ adminAccess, setAdminAccess }) {
   const { userAuth } = useAuthContext();
   const { adminAuth } = useAdminContext();
+  const location = useLocation();
   const manageButton = () => {
     setAdminAccess(!adminAccess);
   };
@@ -40,7 +41,11 @@ export default function AdminAccess({ adminAccess, setAdminAccess }) {
             onClick={() => {
               setAdminAccess(!adminAccess);
             }}
-            to={adminAccess ? "manageproducts" : "Products"}
+            to={
+              location.pathname === "/manageproducts"
+                ? "Products"
+                : "manageproducts"
+            }
             style={{ textDecoration: "none" }}
           >
             <button
@@ -53,7 +58,9 @@ export default function AdminAccess({ adminAccess, setAdminAccess }) {
               }}
             >
               <p style={{ textTransform: "uppercase" }}>
-                {adminAccess ? "Manage products" : "To the shop"}
+                {location.pathname === "/manageproducts"
+                  ? "To the shop"
+                  : "Manage products"}
               </p>
             </button>
           </Link>

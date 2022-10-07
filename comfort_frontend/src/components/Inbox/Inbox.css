@@ -7,6 +7,21 @@
   position: relative;
   top: 40px;
 }
+.inbox-page .button-users-container {
+  display: flex;
+  width: 88vw;
+  height: 70px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.inbox-page .show-users-button {
+  color: black;
+  background-color: aqua;
+  border: none;
+  border-radius: 7px;
+  height: 30px;
+  width: 80px;
+}
 .inbox-page .inbox-container {
   width: 90%;
   height: 80vh;

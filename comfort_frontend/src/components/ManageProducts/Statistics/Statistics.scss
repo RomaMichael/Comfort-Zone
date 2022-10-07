@@ -1,0 +1,17 @@
+.statistics {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  .statistics-container {
+    width: 90%;
+    border: 1px solid blue;
+    .statistics-title {
+      display: flex;
+      justify-content: center;
+    }
+    .best-sellers {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

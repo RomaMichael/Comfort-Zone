@@ -9,7 +9,7 @@ import { GoThreeBars } from "react-icons/go";
 import { BsFillCartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { AiOutlineMail } from "react-icons/ai";
-export default function TemporaryDrawer({ length, userAuth, logout }) {
+export default function TemporaryDrawer({ cartCount, userAuth, logout }) {
   const [state, setState] = useState({
     right: false,
   });
@@ -91,7 +91,7 @@ export default function TemporaryDrawer({ length, userAuth, logout }) {
                   bottom: "4px",
                 }}
               >
-                {length}
+                {cartCount}
               </div>
             </div>
           ) : null}

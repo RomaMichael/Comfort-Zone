@@ -8,7 +8,8 @@ const PORT = 8005;
 const app = express();
 const dataRouter = require("./src/controllers/product.controllers");
 const userRouter = require("./src/controllers/user.controllers");
-const messageRouter = require("./src/controllers/messages.controllers");
+const reportRouter = require("./src/controllers/report.controllers");
+
 const cors = require("cors");
 const passport = require("passport");
 const sessionConfig = require("./src/config/session.config");
@@ -38,7 +39,7 @@ passport.deserializeUser(deserialize);
 
 app.use("/products", dataRouter);
 app.use("/users", userRouter);
-app.use("/messages", messageRouter);
+app.use("/reports", reportRouter);
 
 mongoose.connection.once("open", () => {
   console.log(`MongoDB is connected`);
