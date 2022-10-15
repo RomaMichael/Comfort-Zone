@@ -10,6 +10,7 @@ import { defaultAuth, useAuthContext } from "../../context/AuthProvider";
 import AdminAccess from "../UserAccess/UserAccess";
 
 import { useAdminContext } from "../../context/AdminProvider";
+import { useReport } from "../../context/ReportProvider";
 
 export default function Nav() {
   const { userAuth, setUserAuth } = useAuthContext();
@@ -17,10 +18,12 @@ export default function Nav() {
   const [adminAccess, setAdminAccess] = useState(true);
 
   const { setAdminAuth } = useAdminContext();
-  const [adminState, setAdminState] = useState(false);
+  const [adminState] = useState(false);
   const navigate = useNavigate();
-
+  const { adminAuth } = useAdminContext();
   const [cartCount, setCartCount] = useState(0);
+
+  const { newReports, unresponsed } = useReport();
 
   useEffect(() => {
     if (!userAuth.isLoggedIn) {
@@ -107,14 +110,59 @@ export default function Nav() {
                     <BsFillCartFill />
                   </h3>
                 </Link>
-                <div className="sum-orders">
-                  <p> {cartCount}</p>
-                </div>
+                {cartCount ? (
+                  <div className="sum-orders">
+                    <p> {cartCount}</p>
+                  </div>
+                ) : null}
               </div>
-              <div className="inbox">
+              <div className="inbox" style={{ display: "flex" }}>
                 <Link to="Inbox">
                   <AiOutlineMail style={{ color: "black" }} />
                 </Link>
+                {newReports.length && adminAuth ? (
+                  <div
+                    style={{
+                      width: "25px",
+                      height: "25px",
+                      backgroundColor: "#AB7A5F",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "100px",
+                      position: "relative",
+                      right: "10px",
+                      bottom: "5px",
+                    }}
+                  >
+                    <p style={{ fontSize: "14px", color: "white" }}>
+                      {newReports.length}
+                    </p>
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      width: "25px",
+                      height: "25px",
+                      backgroundColor: "#AB7A5F",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "100px",
+                      position: "relative",
+                      right: "10px",
+                      bottom: "5px",
+                    }}
+                  >
+                    <p style={{ fontSize: "14px", color: "white" }}>
+                      {
+                        unresponsed.map(
+                          (report) => report.sender === userAuth._id
+                        ).length
+                      }
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           ) : null}
@@ -164,6 +212,7 @@ export default function Nav() {
             cartCount={cartCount}
             userAuth={userAuth}
             logout={logout}
+            newReports={newReports}
           />
         </div>
       </div>

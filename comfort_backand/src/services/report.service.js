@@ -18,4 +18,18 @@ const sendMessage = async (report) => {
   }
 };
 
-module.exports = { sendMessage };
+const updateReport = async (id, report) => {
+  console.log("------------------------------------------");
+  console.log(report);
+  try {
+    const updatedConversation = await Report.findByIdAndUpdate(id, report, {
+      new: true,
+    });
+
+    return updatedConversation;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { sendMessage, updateReport };

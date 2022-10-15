@@ -7,8 +7,6 @@ const { isAuth, isAdmin } = require("../middlewares/auth.middleware");
 
 router.get("/check-auth", isAuth, (req, res) => {
   try {
-    console.log("++++++++++++++++++++++++++++++++++++");
-    console.log(req.user._doc);
     res.status(200).json(req.user._doc);
   } catch (error) {
     console.log(error);

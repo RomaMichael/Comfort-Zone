@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import moment from "moment";
+import { useReport } from "./ReportProvider";
 
 const authContext = createContext();
 
@@ -10,7 +11,6 @@ export const defaultAuth = {
 
 export function AuthProvider({ children }) {
   const [userAuth, setUserAuth] = useState(defaultAuth);
-  console.log(userAuth);
 
   const checkAuth = async () => {
     const response = await fetch("http://localhost:8005/users/check-auth", {

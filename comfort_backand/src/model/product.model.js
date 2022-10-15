@@ -1,14 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
-// const imgSchema = new Schema(
-//   {
-//     url: { type: String, required: false },
-//     publicId: { type: String, required: false },
-//   },
-//   { _id: false }
-// );
-
 const productSchema = new Schema({
   name: { type: String, required: true, uniqe: true },
   price: { type: Number, required: true },

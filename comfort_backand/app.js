@@ -6,9 +6,9 @@ const mongoose = require("mongoose");
 const LocalStrategy = require("passport-local");
 const PORT = 8005;
 const app = express();
-const dataRouter = require("./src/controllers/product.controllers");
-const userRouter = require("./src/controllers/user.controllers");
-const reportRouter = require("./src/controllers/report.controllers");
+const dataRouter = require("./src/routes/product.routes");
+const userRouter = require("./src/routes/user.routes");
+const reportRouter = require("./src/routes/report.routes");
 
 const cors = require("cors");
 const passport = require("passport");

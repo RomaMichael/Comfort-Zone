@@ -3,30 +3,40 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import { useAuthContext } from "../context/AuthProvider";
 import { useUsers } from "../context/UsersProvider";
+import moment from "moment";
+import { useReport } from "../context/ReportProvider";
 
 export default function BasicPopover() {
   const [anchorEl, setAnchorEl] = useState(null);
   const { userAuth } = useAuthContext();
-  const { users, isLoadingUsers } = useUsers();
+  const { getReports, updateReport } = useReport();
 
   const [reportToAdmin, setReportToAdmin] = useState({
     sender: userAuth._id,
-
+    current: false,
     report: "",
+    seen: false,
+    responsed: false,
+    date: moment().format("MMMM Do YYYY, h:mm:ss"),
   });
 
   const sendReport = async (event) => {
     event.preventDefault();
     const formDataMessage = new FormData();
     formDataMessage.append("sender", reportToAdmin.sender);
-
+    formDataMessage.append("current", reportToAdmin.current);
     formDataMessage.append("report", reportToAdmin.report);
+    formDataMessage.append("seen", reportToAdmin.seen);
+    formDataMessage.append("date", reportToAdmin.date);
+    formDataMessage.append("responsed", reportToAdmin.responsed);
 
     const response = await fetch("http://localhost:8005/reports/send", {
       method: "POST",
       body: formDataMessage,
     });
     const responseMessage = await response.json();
+    getReports();
+    // updateReports(formDataMessage);
   };
 
   const handleClick = (event) => {

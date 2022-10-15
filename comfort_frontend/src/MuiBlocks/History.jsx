@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthProvider";
 import { useProducts } from "../context/ProductProvider";
 
-export default function History({ historyAmount }) {
+export default function History({ getTotalSpent, historyAmount }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { userAuth } = useAuthContext();
-  const { products } = useProducts();
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -19,8 +19,7 @@ export default function History({ historyAmount }) {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  // const orders = userAuth.orders;
-  // console.log(orders.map((elem) => elem.map((elem) => elem.total)));
+  const orders = userAuth.orders;
 
   return (
     <div>
@@ -44,10 +43,9 @@ export default function History({ historyAmount }) {
               Purchase history
             </h2>
             <p>You have {historyAmount.length} orders</p>
-            <h3>{userAuth.totalSpend}</h3>
             {orders.map((order, i) => (
               <div
-                key={order._id}
+                key={i}
                 className="each-order"
                 style={{
                   minHeight: "50px",
@@ -56,7 +54,7 @@ export default function History({ historyAmount }) {
                 }}
               >
                 {order.map((elem, i) => (
-                  <div key={order._id}>
+                  <div key={i}>
                     {" "}
                     <div
                       className="properties"

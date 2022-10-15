@@ -1,58 +1,8 @@
 .inbox-page {
-  height: 80vh;
-  width: 100%;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  top: 40px;
-}
-.inbox-page .button-users-container {
-  display: flex;
-  width: 88vw;
-  height: 70px;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.inbox-page .show-users-button {
-  color: black;
-  background-color: aqua;
-  border: none;
-  border-radius: 7px;
-  height: 30px;
-  width: 80px;
+  justify-content: center;
 }
 .inbox-page .inbox-container {
-  width: 90%;
-  height: 80vh;
-  display: flex;
-}
-.inbox-page .inbox-container .chats-list {
-  border: 1px solid grey;
-  width: 25vw;
-}
-.inbox-page .inbox-container .current-chat {
-  border: 1px solid grey;
-  width: 75vw;
-  display: flex;
-  flex-direction: column;
-}
-.inbox-page .inbox-container .current-chat .conversation-window {
-  width: 100%;
-  height: 70vh;
-}
-.inbox-page .inbox-container .current-chat .input-and-send {
-  border-top: 1px solid grey;
-  display: flex;
-}
-.inbox-page .inbox-container .current-chat .input-and-send button {
-  width: 20%;
-  border: none;
-  color: white;
-  background-color: blue;
-}
-.inbox-page .inbox-container .current-chat .input-and-send input {
-  height: 47px;
-  width: 80%;
-  border: "none";
+  width: 90vw;
 }/*# sourceMappingURL=Inbox.css.map */

@@ -9,7 +9,12 @@ import { GoThreeBars } from "react-icons/go";
 import { BsFillCartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { AiOutlineMail } from "react-icons/ai";
-export default function TemporaryDrawer({ cartCount, userAuth, logout }) {
+export default function TemporaryDrawer({
+  cartCount,
+  userAuth,
+  logout,
+  newReports,
+}) {
   const [state, setState] = useState({
     right: false,
   });
@@ -75,30 +80,52 @@ export default function TemporaryDrawer({ cartCount, userAuth, logout }) {
               <Link to="/Cart">
                 <BsFillCartFill style={{ fontSize: "22px", color: "black" }} />
               </Link>
+              {cartCount ? (
+                <div
+                  className="amount"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "100px",
+                    backgroundColor: "#ab7a5f",
+                    color: "white",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "relative",
+                    right: "13px",
+                    bottom: "4px",
+                  }}
+                >
+                  <p style={{ fontSize: "13px" }}>{cartCount}</p>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+          <div className="inbox" style={{ display: "flex" }}>
+            <Link to="Inbox">
+              <AiOutlineMail style={{ color: "black" }} />
+            </Link>
+            {newReports.length ? (
               <div
-                className="amount"
                 style={{
                   width: "20px",
                   height: "20px",
-                  borderRadius: "100px",
-                  backgroundColor: "#ab7a5f",
-                  color: "white",
+                  backgroundColor: "#AB7A5F",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  borderRadius: "100px",
                   position: "relative",
-                  right: "13px",
-                  bottom: "4px",
+                  right: "7px",
+                  bottom: "7px",
                 }}
               >
-                {cartCount}
+                <p style={{ fontSize: "13px", color: "white" }}>
+                  {newReports.length}
+                </p>
               </div>
-            </div>
-          ) : null}
-          <div className="inbox">
-            <Link to="/Inbox">
-              <AiOutlineMail style={{ fontSize: "30px", color: "black" }} />
-            </Link>
+            ) : null}
           </div>
           <div
             className="login-responsive"

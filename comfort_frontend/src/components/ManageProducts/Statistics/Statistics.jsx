@@ -4,25 +4,30 @@ import { useUsers } from "../../../context/UsersProvider";
 import "./Statistics.css";
 
 export default function Statistics() {
-  const { userAuth } = useAuthContext();
   const { users } = useUsers();
 
-  //context
-
   const userTotalBuys = users.map((user) => ({ ...user, totalBuys: 0 }));
+  console.log("ae");
   console.log(userTotalBuys);
 
-  // const totalOrders = userTotalBuys.reduce((prev, userOrder) => {
-  //   userOrder.totalBuys = prev + userOrder.length;
-  // }, 0);
+  const getTotalUsersSpending = () => {
+    const getUserTotal = (orders) =>
+      orders.reduce(
+        (accumalator, order) =>
+          accumalator +
+          order.reduce((prev, order) => {
+            return prev + order.price * order.counter;
+          }, 0),
+        0
+      );
 
-  // const stepTwo = userTotalBuys.orders.map((order) => order);
+    const usersTotal = users.reduce(
+      (accumalator, user) => accumalator + getUserTotal(user.orders),
+      0
+    );
 
-  // console.log(stepTwo);
-
-  // const orderProducts = userAuth.orders.map((order) =>
-  //   order.map((order) => order.name)
-  // );
+    return usersTotal.toFixed(2);
+  };
 
   return (
     <div className="statistics">
@@ -33,7 +38,7 @@ export default function Statistics() {
 
         <div className="Information">
           <h3>Information</h3>
-          <p>You have </p>
+          <p>You have {getTotalUsersSpending()}</p>
         </div>
       </div>
     </div>
