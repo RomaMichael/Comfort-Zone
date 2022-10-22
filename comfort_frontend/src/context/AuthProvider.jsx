@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import moment from "moment";
-import { useReport } from "./ReportProvider";
 
 const authContext = createContext();
 
@@ -37,8 +36,20 @@ export function AuthProvider({ children }) {
       body: JSON.stringify({ ...userAuth, cartState: cartUpdate }),
     });
   };
+  const updateTotalSpend = async (totalSpend) => {
+    await fetch(`http://localhost:8005/users/${userAuth._id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...userAuth, totalSpend: totalSpend }),
+    });
+  };
 
-  const confirm = async (user) => {
+  const confirmAndAddOrder = async (newOrder) => {
+    const newOrderWithDates = newOrder.map((product) => ({
+      ...product,
+      date: moment().format("MMMM Do YYYY, h:mm:ss a"),
+    }));
+    const updatedOrders = [...userAuth.orders, newOrderWithDates];
     try {
       const response = await fetch(
         `http://localhost:8005/users/${userAuth._id}`,
@@ -46,30 +57,35 @@ export function AuthProvider({ children }) {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            ...user,
-            totalSpend: 0,
-            orders: [
-              ...user.orders,
-              userAuth.cartState.map((product) => ({
-                ...product,
-
-                date: moment().format("MMMM Do YYYY, h:mm:ss a"),
-              })),
-            ],
+            ...userAuth,
+            totalSpend: updatedOrders.reduce(
+              (accumalator, order) =>
+                accumalator +
+                order.reduce((prev, order) => {
+                  return prev + order.price * order.counter;
+                }, 0),
+              0
+            ),
+            orders: updatedOrders,
             cartState: [],
           }),
         }
       );
-      const updatedOrder = await response.json();
-
-      setUserAuth(updatedOrder);
+      const updatedUser = await response.json();
+      setUserAuth(updatedUser);
       checkAuth();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const value = { userAuth, setUserAuth, updateCart, confirm };
+  const value = {
+    userAuth,
+    setUserAuth,
+    updateCart,
+    confirmAndAddOrder,
+    updateTotalSpend,
+  };
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 }
 

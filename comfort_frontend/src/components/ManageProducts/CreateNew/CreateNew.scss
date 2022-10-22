@@ -1,9 +1,12 @@
 .createNew {
   display: flex;
   justify-content: center;
+
   .create-form {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
     gap: 20px;
 
     .name-price {
@@ -28,6 +31,11 @@
         border-radius: 8px;
       }
     }
+    textarea {
+      width: 400px;
+
+      border-radius: 8px;
+    }
     .colors-section {
       display: flex;
       flex-direction: column;
@@ -48,6 +56,57 @@
           width: 100px;
         }
       }
+    }
+  }
+}
+
+@media screen and(max-width:850px) {
+  .create-form {
+    .create-title {
+      display: flex;
+      justify-content: center;
+      h2 {
+        width: 50vw;
+      }
+    }
+    .name-price {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .category-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .describe-product {
+      display: flex;
+      justify-content: center;
+      textarea {
+        width: 50vw;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .colors-section {
+      display: flex;
+      justify-content: center;
+
+      .colors {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        label {
+          display: flex;
+        }
+      }
+    }
+    .shipping {
+      display: flex;
+      justify-content: center;
     }
   }
 }

@@ -5,6 +5,8 @@
 .createNew .create-form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
   gap: 20px;
 }
 .createNew .create-form .name-price {
@@ -27,6 +29,10 @@
   height: 30px;
   border-radius: 8px;
 }
+.createNew .create-form textarea {
+  width: 400px;
+  border-radius: 8px;
+}
 .createNew .create-form .colors-section {
   display: flex;
   flex-direction: column;
@@ -43,4 +49,52 @@
 }
 .createNew .create-form .shipping .shipping-cost input {
   width: 100px;
+}
+
+@media screen and (max-width: 850px) {
+  .create-form .create-title {
+    display: flex;
+    justify-content: center;
+  }
+  .create-form .create-title h2 {
+    width: 50vw;
+  }
+  .create-form .name-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .create-form .category-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .create-form .describe-product {
+    display: flex;
+    justify-content: center;
+  }
+  .create-form .describe-product textarea {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+  }
+  .create-form .colors-section {
+    display: flex;
+    justify-content: center;
+  }
+  .create-form .colors-section .colors {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .create-form .colors-section .colors label {
+    display: flex;
+  }
+  .create-form .shipping {
+    display: flex;
+    justify-content: center;
+  }
 }/*# sourceMappingURL=CreateNew.css.map */

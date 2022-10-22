@@ -32,29 +32,9 @@ export default function Update() {
       <div className="product-list">
         <p>Click on a Picture to change</p>
         {filteredProducts.map((product) => (
-          <div
-            className="productToUpdate"
-            key={product._id}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              border: "1px solid grey",
-              width: "400px",
-              borderRadius: "10px",
-              marginBottom: "30px",
-            }}
-          >
-            <img
-              src={product.img}
-              alt="product pic"
-              style={{
-                width: "100px",
-                height: "100px",
-                borderRadius: "10px",
-              }}
-            />
-            {product.name}
+          <div className="productToUpdate" key={product._id}>
+            <img src={product.img} alt="product pic" />
+            <p>{product.name}</p>
             <UpdatePopover product={product} />
           </div>
         ))}

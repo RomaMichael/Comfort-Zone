@@ -23,10 +23,32 @@ export default function Nav() {
   const { adminAuth } = useAdminContext();
   const [cartCount, setCartCount] = useState(0);
 
-  const { newReports, unresponsed } = useReport();
+  const { newReports, unresponsed, getReports, reports, setUnresponsed } =
+    useReport();
+
+  const reportsToAdmin = reports.filter(
+    (report) => report.sender === userAuth._id
+  );
 
   useEffect(() => {
     if (!userAuth.isLoggedIn) {
+      navigate("/home", { replace: true });
+    }
+  }, []);
+
+  useEffect(() => {
+    getReports();
+    setUnresponsed(
+      reports.filter(
+        (report) => report.responsed === false && report.sender === userAuth._id
+      )
+    );
+  }, [userAuth]);
+
+  useEffect(() => {}, []);
+
+  useEffect(() => {
+    if (!userAuth) {
       navigate("/home", { replace: true });
     }
   }, []);
@@ -120,49 +142,26 @@ export default function Nav() {
                 <Link to="Inbox">
                   <AiOutlineMail style={{ color: "black" }} />
                 </Link>
-                {newReports.length && adminAuth ? (
-                  <div
-                    style={{
-                      width: "25px",
-                      height: "25px",
-                      backgroundColor: "#AB7A5F",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "100px",
-                      position: "relative",
-                      right: "10px",
-                      bottom: "5px",
-                    }}
-                  >
-                    <p style={{ fontSize: "14px", color: "white" }}>
-                      {newReports.length}
-                    </p>
-                  </div>
-                ) : (
-                  <div
-                    style={{
-                      width: "25px",
-                      height: "25px",
-                      backgroundColor: "#AB7A5F",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "100px",
-                      position: "relative",
-                      right: "10px",
-                      bottom: "5px",
-                    }}
-                  >
-                    <p style={{ fontSize: "14px", color: "white" }}>
-                      {
-                        unresponsed.map(
-                          (report) => report.sender === userAuth._id
-                        ).length
-                      }
-                    </p>
-                  </div>
-                )}
+                <div
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    backgroundColor: "#AB7A5F",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "100px",
+                    position: "relative",
+                    right: "10px",
+                    bottom: "5px",
+                  }}
+                >
+                  <p style={{ fontSize: "14px", color: "white" }}>
+                    {userAuth.role === "user"
+                      ? reportsToAdmin.length
+                      : newReports.length}
+                  </p>
+                </div>
               </div>
             </div>
           ) : null}
@@ -176,13 +175,9 @@ export default function Nav() {
                   alignItems: "flex-start",
                   gap: "15px",
                 }}
+                onClick={logout}
               >
-                <h3
-                  style={{ cursor: "pointer", fontSize: "20px" }}
-                  onClick={logout}
-                >
-                  LogOut
-                </h3>
+                <h3 style={{ cursor: "pointer", fontSize: "20px" }}>LogOut</h3>
                 <div className="user-avatar">
                   <img
                     src={userAuth.isLoggedIn ? userAuth.avatar.url : null}
@@ -191,6 +186,7 @@ export default function Nav() {
                       width: "50px",
                       height: "50px",
                       borderRadius: "20px",
+                      cursor: "pointer",
                     }}
                   />
                 </div>

@@ -7,4 +7,30 @@
   width: 250px;
   height: 30px;
   border-radius: 15px;
+}
+.update-products .product-list .productToUpdate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid grey;
+  width: 400px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.update-products .product-list .productToUpdate img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 850px) {
+  .update-products .product-list .productToUpdate {
+    width: 40vw;
+  }
+  .update-products .product-list .productToUpdate img {
+    width: 10vw;
+  }
+  .update-products .product-list .productToUpdate p {
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=Update.css.map */

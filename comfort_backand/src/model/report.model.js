@@ -11,6 +11,8 @@ const reportSchema = new Schema({
   seen: { type: Boolean, required: true },
   responsed: { type: Boolean, required: true },
   answer: { type: String },
+  userCurrent: { type: Boolean },
+  userSeen: { type: Boolean },
 });
 
 const Reports = mongoose.model("Reports", reportSchema);

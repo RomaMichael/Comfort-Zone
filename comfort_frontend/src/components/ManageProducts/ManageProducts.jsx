@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { useProducts } from "../../context/ProductProvider";
 import CreateNew from "./CreateNew/CreateNew";
 import Delete from "./Delete/Delete";
@@ -13,6 +12,7 @@ export default function ManageProducts() {
   const [updateState, setUpdateState] = useState(false);
   const [statisticsState, setStatisticsState] = useState(false);
   const { products } = useProducts();
+
   const delPage = () => {
     setDeleteState(!deleteState);
     setCreateState(false);

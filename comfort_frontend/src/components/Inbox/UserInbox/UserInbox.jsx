@@ -1,70 +1,56 @@
 import React, { useState } from "react";
 import { useReport } from "../../../context/ReportProvider";
 import { useAuthContext } from "../../../context/AuthProvider";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { useEffect } from "react";
 
 export default function UserInbox() {
-  const { reports } = useReport();
+  const { reports, updateReport, setReports } = useReport();
   const { userAuth } = useAuthContext();
 
-  const [showReports, setShowReports] = useState(true);
-  const [showArchive, setShowArchive] = useState(false);
+  const [responsedReport, setResponsedReport] = useState({});
+
+  useEffect(() => {
+    updateReport(responsedReport);
+  }, [responsedReport]);
 
   const myReports = reports.filter((report) => report.sender === userAuth._id);
 
-  const reportsList = () => {
-    setShowReports(true);
-    setShowArchive(false);
+  const openConversation = (reportId) => {
+    const currentChatIndex = reports.findIndex(
+      (report) => report._id === reportId
+    );
+    const currentConversation = {
+      ...reports[currentChatIndex],
+      userCurrent: true,
+      userSeen: true,
+    };
+    setResponsedReport(currentConversation);
+
+    setReports((prevReports) => {
+      const updatedReports = [...prevReports];
+      updatedReports[currentChatIndex] = currentConversation;
+      return updatedReports;
+    });
   };
-  const archiveList = () => {
-    setShowReports(false);
-    setShowArchive(true);
+
+  const closeConversation = () => {
+    setResponsedReport((prev) => ({ ...prev, userCurrent: false }));
+  };
+
+  const reportToArchive = (reportId) => {
+    console.log(reportId);
   };
 
   return (
     <div className="user-inbox" style={{ height: "100vh" }}>
       <div
-        className="buttons-report"
+        className="user-inbox-container"
         style={{
-          width: "100%",
           display: "flex",
           justifyContent: "space-between",
-          marginTop: "35px",
         }}
       >
-        {showReports ? (
-          <div>{null}</div>
-        ) : (
-          <button
-            onClick={reportsList}
-            style={{
-              border: "none",
-              borderRadius: "15px",
-              color: "white",
-              backgroundColor: "blue",
-              height: "40px",
-            }}
-          >
-            Show reports
-          </button>
-        )}
-        {showArchive ? (
-          <div>{null}</div>
-        ) : (
-          <button
-            onClick={archiveList}
-            style={{
-              border: "none",
-              borderRadius: "15px",
-              color: "black",
-              backgroundColor: "yellowgreen",
-              height: "40px",
-            }}
-          >
-            Show archive
-          </button>
-        )}
-      </div>
-      {showReports ? (
         <div
           className="reports-list"
           style={{
@@ -73,21 +59,59 @@ export default function UserInbox() {
             justifyContent: "space-between",
           }}
         >
-          <div className="unresponsed">
+          <div
+            className="unresponsed"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+            }}
+          >
             <h3>My reports</h3>
             {myReports.map((report, i) => (
               <div
                 key={report._id}
                 style={{
                   border: "1px solid grey",
+                  backgroundColor:
+                    !report.userSeen && report.responsed
+                      ? "rgb(6, 255, 6)"
+                      : null,
                   width: "300px",
                   height: "100px",
                   cursor: "pointer",
+                  borderRadius: "8px",
                 }}
+                onClick={() => openConversation(report._id)}
               >
-                <p style={{ fontSize: "14px" }}>Report {i + 1}:</p>
+                {report.responsed ? (
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "700",
+                      color: "blue",
+                      float: "right",
+                      backgroundColor: "yellow",
+                      width: "65px",
+                      height: "30px",
+                      borderRadius: "100px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    Answered
+                  </p>
+                ) : null}
+                <p style={{ fontSize: "14px", fontWeight: "700" }}>
+                  Report {i + 1}:
+                </p>
                 <p
-                  style={{ fontSize: "14px", fontWeight: "700", color: "blue" }}
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "700",
+                    color: "blue",
+                  }}
                 >
                   {report.report}
                 </p>
@@ -95,9 +119,70 @@ export default function UserInbox() {
               </div>
             ))}
           </div>
-          <div className="responsed"></div>
         </div>
-      ) : null}
+
+        <div className="conversation">
+          {responsedReport.userCurrent ? (
+            <div
+              style={{
+                border: "1px solid black",
+                width: "400px",
+                height: "200px",
+                position: "relative",
+                top: "130px",
+              }}
+            >
+              <div
+                className="conversation-user-title"
+                style={{ display: "flex", justifyContent: "flex-end" }}
+              >
+                <AiFillCloseCircle
+                  style={{ fontSize: "25px" }}
+                  onClick={closeConversation}
+                />
+              </div>
+              <div className="conversation-user-body">
+                <p>
+                  <span style={{ fontWeight: "700" }}>Me:</span>{" "}
+                  {responsedReport.report}
+                </p>
+
+                {responsedReport.answer ? (
+                  <div className="responded-report">
+                    <p>
+                      <span style={{ fontWeight: "700" }}>Admin:</span>
+                      {responsedReport.answer}{" "}
+                    </p>
+                    <div
+                      className="report-to-archive"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        height: "80px",
+                      }}
+                    >
+                      <button
+                        style={{
+                          backgroundColor: "#ADFF2F",
+                          border: "none",
+                          width: "100px",
+                          height: "30px",
+                          borderRadius: "8px",
+                        }}
+                        onClick={() => reportToArchive(responsedReport._id)}
+                      >
+                        To archive
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <p style={{ color: "red" }}>Not answered yet</p>
+                )}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 }

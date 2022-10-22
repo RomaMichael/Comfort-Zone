@@ -65,6 +65,7 @@ export default function DelPopover({ name, deleteProduct }) {
                 width: "80px",
                 border: "none",
                 borderRadius: "10px",
+                backgroundColor: "grey",
               }}
               onClick={handleClose}
             >

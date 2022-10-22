@@ -8,19 +8,9 @@ import OrderConfirm from "../../MuiBlocks/OrderConfirm";
 export default function Cart() {
   const [subTotal, setSubTotal] = useState(0);
   const [shippingPayment, setShippingPayment] = useState(0);
-  const { userAuth, updateCart, setUserAuth, confirm } = useAuthContext();
+  const { userAuth, updateCart, setUserAuth, confirmAndAddOrder } =
+    useAuthContext();
   const { cartState } = userAuth;
-
-  const confirmation = () => {
-    setUserAuth((prev) => ({
-      ...prev,
-      orders: { cartState },
-
-      cartState: [],
-    }));
-
-    confirm(userAuth);
-  };
 
   useEffect(() => {
     let totalShipping = 0;
@@ -97,7 +87,7 @@ export default function Cart() {
               </div>
               {userAuth.isLoggedIn ? (
                 <OrderConfirm
-                  confirmation={confirmation}
+                  confirmation={() => confirmAndAddOrder(cartState)}
                   clearCart={clearCart}
                 />
               ) : (

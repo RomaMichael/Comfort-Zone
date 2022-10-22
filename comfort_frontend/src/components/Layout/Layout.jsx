@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Cart from "../Cart/Cart";
 import About from "../About/About";
 import Home from "../Home/Home";
@@ -14,7 +14,24 @@ import UserProfile from "../UserProfile/UserProfile";
 import Inbox from "../Inbox/Inbox";
 
 export default function Layout() {
-  const { setCart } = useAuthContext();
+  const { setCart, userAuth, setUserAuth, updateTotalSpend } = useAuthContext();
+
+  useEffect(() => {
+    if (userAuth.isLoggedIn) {
+      setUserAuth((prev) => ({
+        ...prev,
+        totalSpend: userAuth.orders.reduce(
+          (accumalator, order) =>
+            accumalator +
+            order.reduce((prev, order) => {
+              return prev + order.price * order.counter;
+            }, 0),
+          0
+        ),
+      }));
+    }
+  }, [userAuth.isLoggedIn]);
+  updateTotalSpend(userAuth.totalSpend);
 
   return (
     <div>

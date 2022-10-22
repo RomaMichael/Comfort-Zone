@@ -1,5 +1,4 @@
 import React from "react";
-import { useAuthContext } from "../../../context/AuthProvider";
 import { useUsers } from "../../../context/UsersProvider";
 import "./Statistics.css";
 
@@ -7,27 +6,21 @@ export default function Statistics() {
   const { users } = useUsers();
 
   const userTotalBuys = users.map((user) => ({ ...user, totalBuys: 0 }));
-  console.log("ae");
+
   console.log(userTotalBuys);
 
-  const getTotalUsersSpending = () => {
-    const getUserTotal = (orders) =>
-      orders.reduce(
-        (accumalator, order) =>
-          accumalator +
-          order.reduce((prev, order) => {
-            return prev + order.price * order.counter;
-          }, 0),
-        0
-      );
+  const incomes = users.reduce((accumulator, user) => {
+    return accumulator + user.totalSpend;
+  }, 0);
 
-    const usersTotal = users.reduce(
-      (accumalator, user) => accumalator + getUserTotal(user.orders),
-      0
-    );
+  const arrayMostOrders = users.sort(function (a, b) {
+    return a.orders.length - b.orders.length;
+  });
+  console.log(arrayMostOrders);
 
-    return usersTotal.toFixed(2);
-  };
+  const arrayMostSpend = users.sort(function (a, b) {
+    return a.totalSpend - b.orders.totalSpend;
+  });
 
   return (
     <div className="statistics">
@@ -38,7 +31,12 @@ export default function Statistics() {
 
         <div className="Information">
           <h3>Information</h3>
-          <p>You have {getTotalUsersSpending()}</p>
+          <p>
+            The shop earns{" "}
+            <span style={{ color: "blue", fontWeight: "700" }}>{incomes}$</span>
+          </p>
+          <p> Top buyer(by orders): {arrayMostOrders.at(-1).username}</p>
+          <p> Top buyer(by spends): {arrayMostSpend[0].username}</p>
         </div>
       </div>
     </div>

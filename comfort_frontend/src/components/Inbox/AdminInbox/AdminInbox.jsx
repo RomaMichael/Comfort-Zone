@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useReport } from "../../../context/ReportProvider";
 import "./AdminInbox.css";
 import { AiFillCloseCircle } from "react-icons/ai";
-import Archive from "./Archive/Archive";
-import ReportList from "./ReportList/ReportList";
+import ArchiveAdmin from "./ArchiveAdmin/ArchiveAdmin";
+import ReportListAdmin from "./ReportListAdmin/ReportListAdmin";
 
 export default function AdminInbox() {
   const { reports, updateReport, setReports } = useReport();
@@ -13,14 +13,18 @@ export default function AdminInbox() {
   const [showReports, setShowReports] = useState(true);
   const [showArchive, setShowArchive] = useState(false);
   const [answer, setAnswer] = useState("");
-  const [unresponsed, setUnresponsed] = useState([]);
-  const [archive, setArchive] = useState([]);
 
   useEffect(() => {
-    setUnresponsed(reports.filter((report) => report.responsed === false));
+    updateReport(conversation);
+  }, [conversation.responsed]);
 
-    setArchive(reports.filter((report) => report.responsed === true));
-  }, [conversation.answer]);
+  const unrespondedReports = useMemo(() => {
+    return reports.filter((report) => report.responsed === false);
+  }, [reports]);
+
+  const archivedReports = useMemo(() => {
+    return reports.filter((report) => report.responsed === true);
+  }, [reports]);
 
   const openChat = (reportId) => {
     const currentChatIndex = reports.findIndex(
@@ -38,16 +42,6 @@ export default function AdminInbox() {
       updatedReports[currentChatIndex] = currentConversation;
       return updatedReports;
     });
-
-    updateReport(currentConversation);
-  };
-
-  const watchArchive = (archiveId) => {
-    const archiveIndex = archive.findIndex(
-      (archive) => archive._id === archiveId
-    );
-    const currentArchive = { ...archive[archiveIndex], current: true };
-    setArchiveItem(currentArchive);
   };
 
   const reportsList = () => {
@@ -64,18 +58,34 @@ export default function AdminInbox() {
   };
 
   const adminResponse = () => {
-    console.log(answer);
     setConversation((prev) => ({
       ...prev,
       responsed: true,
       answer: answer,
       current: false,
     }));
+    const currentChatIndex = reports.findIndex(
+      (report) => report._id === conversation._id
+    );
+    setReports((prevReports) => {
+      const updatedReports = [...prevReports];
+      updatedReports[currentChatIndex] = {
+        ...updatedReports[currentChatIndex],
+        responsed: true,
+        answer: answer,
+        current: false,
+      };
+      return updatedReports;
+    });
   };
 
-  useEffect(() => {
-    updateReport(conversation);
-  }, [conversation.responsed]);
+  const watchArchive = (archiveId) => {
+    const archiveIndex = archivedReports.findIndex(
+      (archive) => archive._id === archiveId
+    );
+    const currentArchive = { ...archivedReports[archiveIndex], current: true };
+    setArchiveItem(currentArchive);
+  };
 
   return (
     <div className="admin-inbox">
@@ -136,13 +146,17 @@ export default function AdminInbox() {
             style={{ display: "flex", flexDirection: "column", gap: "20px" }}
           >
             {showReports ? (
-              <ReportList
+              <ReportListAdmin
                 reports={reports}
-                unresponsed={unresponsed}
+                unresponsed={unrespondedReports}
                 openChat={openChat}
               />
             ) : (
-              <Archive archive={archive} watchArchive={watchArchive} />
+              <ArchiveAdmin
+                archive={archivedReports}
+                archiveItem={archiveItem}
+                watchArchive={watchArchive}
+              />
             )}
           </div>
 
@@ -203,7 +217,7 @@ export default function AdminInbox() {
                       border: "none",
                       backgroundColor: "yellowgreen",
                     }}
-                    onClick={() => adminResponse()}
+                    onClick={adminResponse}
                   >
                     Send
                   </button>

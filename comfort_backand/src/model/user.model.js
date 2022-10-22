@@ -22,11 +22,12 @@ const userSchema = new Schema({
     default: "user",
     enum: ["admin", "user"],
   },
-  messages: { type: Array, required: true },
+  // messages: { type: Array, required: true },
   avatar: avatarSchema,
   cartState: { type: [productSchema], required: false },
-  orders: { type: Object, require: false },
+  orders: { type: Object, require: true },
   totalSpend: { type: Number, require: true },
+  crationDate: { type: String, required: true },
 });
 
 const User = mongoose.model("User", userSchema);

@@ -3,7 +3,6 @@ import React from "react";
 export default function ReportList({ reports, unresponsed, openChat }) {
   return (
     <div>
-      {" "}
       <div>
         <h2>Unresponsed reports</h2>
         {reports.length ? (
@@ -52,10 +51,17 @@ export default function ReportList({ reports, unresponsed, openChat }) {
                   {!report.seen ? (
                     <p
                       style={{
-                        fontSize: "14px",
+                        fontSize: "12px",
                         fontWeight: "700",
                         color: "blue",
                         float: "right",
+                        backgroundColor: "yellow",
+                        width: "35px",
+                        height: "35px",
+                        borderRadius: "100px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
                     >
                       New

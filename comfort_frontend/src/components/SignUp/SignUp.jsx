@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useAuthContext } from "../../context/AuthProvider";
+import moment from "moment";
 
 import { nanoid } from "nanoid";
 
@@ -9,7 +8,8 @@ import "./SignUp.css";
 export default function SignUp() {
   const [createdUser, setCreatedUser] = useState({
     _id: nanoid(),
-    messages: [],
+    orders: [],
+    creationDate: moment().format("MMM Do YY"),
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,9 @@ export default function SignUp() {
     formData.append("email", createdUser.email);
     formData.append("password", createdUser.password);
     formData.append("avatar", createdUser.avatar);
-    formData.append("messages", createdUser.messages);
+    formData.append("orders", createdUser.orders);
+
+    formData.append("crationDate", createdUser.creationDate);
 
     const response = await fetch("http://localhost:8005/users/register", {
       method: "POST",

@@ -61,7 +61,7 @@ export default function Delete() {
         <div className="product-delete" key={product._id}>
           <div className="product-props">
             <img src={product.img} alt={product.name} className="img-delete" />
-            {product.name}
+            <p>{product.name}</p>
             <DelPopover
               name={product.name}
               deleteProduct={() => deleteProduct(product._id)}

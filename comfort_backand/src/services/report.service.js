@@ -19,8 +19,6 @@ const sendMessage = async (report) => {
 };
 
 const updateReport = async (id, report) => {
-  console.log("------------------------------------------");
-  console.log(report);
   try {
     const updatedConversation = await Report.findByIdAndUpdate(id, report, {
       new: true,

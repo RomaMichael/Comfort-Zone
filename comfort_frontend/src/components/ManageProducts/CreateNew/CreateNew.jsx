@@ -149,7 +149,10 @@ export default function CreateNew() {
   return (
     <div className="createNew" onSubmit={createNew}>
       <form className="create-form">
-        <h2 style={{ textAlign: "center" }}>Create new product section</h2>
+        <div className="create-title">
+          <h2 style={{ textAlign: "center" }}>Create new product section</h2>
+        </div>
+
         <div className="name-price">
           <input
             type="text"
@@ -199,13 +202,16 @@ export default function CreateNew() {
             <option value="Caressa">Caressa</option>
           </select>
         </div>
-        <textarea
-          placeholder="Describe product"
-          style={{ width: "400px", borderRadius: "8px" }}
-          onChange={(e) => {
-            setNewProduct({ ...newProduct, text: e.target.value });
-          }}
-        ></textarea>
+        <div className="describe-product">
+          {" "}
+          <textarea
+            placeholder="Describe product"
+            onChange={(e) => {
+              setNewProduct({ ...newProduct, text: e.target.value });
+            }}
+          ></textarea>
+        </div>
+
         <div className="colors-section">
           <h4 style={{ textAlign: "center" }}>Choose colors</h4>
           <div className="colors">

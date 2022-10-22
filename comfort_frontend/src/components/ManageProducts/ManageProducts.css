@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  height: 100%;
 }
 .manage-products .manage-container {
   width: 90%;
@@ -41,4 +42,22 @@
   background-color: orangered;
   color: white;
   font-weight: 500;
+}
+
+@media screen and (max-width: 850px) {
+  .manage-products {
+    height: 900px;
+  }
+  .manage-products .manage-container .admin-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .manage-products .manage-container .admin-buttons .product-manage {
+    display: flex;
+    flex-direction: column;
+  }
+  .manage-products .manage-container .admin-buttons .product-manage button {
+    align-self: center;
+  }
 }/*# sourceMappingURL=ManageProducts.css.map */

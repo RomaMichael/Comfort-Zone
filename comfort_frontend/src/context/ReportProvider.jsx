@@ -5,7 +5,6 @@ const ReportContext = createContext();
 
 export function ReportProvider({ children }) {
   const [reports, setReports] = useState([]);
-  const [newReports, setNewReports] = useState([]);
   const [unresponsed, setUnresponsed] = useState([]);
   const { userAuth } = useAuthContext();
 
@@ -14,11 +13,10 @@ export function ReportProvider({ children }) {
     const resReport = await response.json();
 
     setReports(resReport);
-
-    setNewReports(reports.filter((report) => report.seen === false));
-    setUnresponsed(reports.filter((report) => report.responsed === false));
-    setUnresponsed((prev) =>
-      prev.filter((report) => report.sender === userAuth._id)
+    setUnresponsed(
+      reports.filter(
+        (report) => report.responsed === false && report.sender === userAuth._id
+      )
     );
   };
 
@@ -37,8 +35,7 @@ export function ReportProvider({ children }) {
   const value = {
     reports,
     getReports,
-    newReports,
-    setNewReports,
+    newReports: reports.filter((report) => report.seen === false),
     setUnresponsed,
     unresponsed,
     updateReport,

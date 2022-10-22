@@ -17,6 +17,8 @@ export default function BasicPopover() {
     report: "",
     seen: false,
     responsed: false,
+    userCurrent: false,
+    userSeen: false,
     date: moment().format("MMMM Do YYYY, h:mm:ss"),
   });
 
@@ -29,6 +31,8 @@ export default function BasicPopover() {
     formDataMessage.append("seen", reportToAdmin.seen);
     formDataMessage.append("date", reportToAdmin.date);
     formDataMessage.append("responsed", reportToAdmin.responsed);
+    formDataMessage.append("userSeen", reportToAdmin.userSeen);
+    formDataMessage.append("userCurrent", reportToAdmin.userCurrent);
 
     const response = await fetch("http://localhost:8005/reports/send", {
       method: "POST",
