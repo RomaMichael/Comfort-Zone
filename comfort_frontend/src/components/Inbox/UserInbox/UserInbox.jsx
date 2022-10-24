@@ -1,20 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useReport } from "../../../context/ReportProvider";
 import { useAuthContext } from "../../../context/AuthProvider";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { useEffect } from "react";
+
+import "./UserInbox.css";
 
 export default function UserInbox() {
   const { reports, updateReport, setReports } = useReport();
   const { userAuth } = useAuthContext();
 
   const [responsedReport, setResponsedReport] = useState({});
+  const myReports = reports.filter((report) => report.sender === userAuth._id);
+
+  const responsedReports = myReports.filter(
+    (report) => report.responsed === true && report.userSeen === false
+  );
+  console.log(responsedReports);
+  const [reportList, setReportList] = useState(responsedReports);
+  const [reportsSection, setReportSection] = useState("New");
+
+  const showAll = () => {
+    setReportList(myReports);
+    console.log(reportList);
+    setReportSection("All reports");
+  };
+
+  const showNew = () => {
+    const responsed = myReports.filter(
+      (report) => report.responsed === true && report.userSeen === false
+    );
+    setReportList(responsed);
+    setReportSection("New");
+  };
+  const showArchive = () => {
+    const unResponsed = myReports.filter(
+      (report) => report.responsed === true && report.userSeen === true
+    );
+    setReportList(unResponsed);
+    setReportSection("Archive");
+  };
 
   useEffect(() => {
     updateReport(responsedReport);
   }, [responsedReport]);
-
-  const myReports = reports.filter((report) => report.sender === userAuth._id);
 
   const openConversation = (reportId) => {
     const currentChatIndex = reports.findIndex(
@@ -38,37 +66,55 @@ export default function UserInbox() {
     setResponsedReport((prev) => ({ ...prev, userCurrent: false }));
   };
 
-  const reportToArchive = (reportId) => {
-    console.log(reportId);
-  };
-
   return (
-    <div className="user-inbox" style={{ height: "100vh" }}>
-      <div
-        className="user-inbox-container"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <div
-          className="reports-list"
-          style={{
-            marginTop: "50px",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <div
-            className="unresponsed"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-            }}
-          >
+    <div className="user-inbox">
+      <div className="user-inbox-container">
+        <div className="reports-list">
+          <div className="my-reports">
             <h3>My reports</h3>
-            {myReports.map((report, i) => (
+            <div className="reports-filters">
+              <button
+                style={{
+                  border: "none",
+                  borderRadius: "8px",
+                  height: "30px",
+                  width: "100px",
+                  backgroundColor: "#ADFF2F",
+                  fontWeight: "700",
+                }}
+                onClick={showAll}
+              >
+                All
+              </button>
+              <button
+                style={{
+                  border: "none",
+                  borderRadius: "8px",
+                  height: "30px",
+                  width: "120px",
+                  backgroundColor: "yellow",
+                  fontWeight: "700",
+                }}
+                onClick={showNew}
+              >
+                New answers
+              </button>
+              <button
+                style={{
+                  border: "none",
+                  borderRadius: "8px",
+                  height: "30px",
+                  width: "140px",
+                  backgroundColor: "#5549FF",
+                  fontWeight: "700",
+                }}
+                onClick={showArchive}
+              >
+                Archive
+              </button>
+            </div>
+            <h3>{reportsSection}</h3>
+            {reportList.map((report, i) => (
               <div
                 key={report._id}
                 style={{
@@ -126,10 +172,12 @@ export default function UserInbox() {
             <div
               style={{
                 border: "1px solid black",
-                width: "400px",
+                borderRadius: "15px",
+                width: "300px",
                 height: "200px",
                 position: "relative",
                 top: "130px",
+                backgroundColor: "#A9FFFC",
               }}
             >
               <div
@@ -141,7 +189,10 @@ export default function UserInbox() {
                   onClick={closeConversation}
                 />
               </div>
-              <div className="conversation-user-body">
+              <div
+                className="conversation-user-body"
+                style={{ paddingLeft: "5px" }}
+              >
                 <p>
                   <span style={{ fontWeight: "700" }}>Me:</span>{" "}
                   {responsedReport.report}
@@ -160,23 +211,18 @@ export default function UserInbox() {
                         alignItems: "center",
                         height: "80px",
                       }}
-                    >
-                      <button
-                        style={{
-                          backgroundColor: "#ADFF2F",
-                          border: "none",
-                          width: "100px",
-                          height: "30px",
-                          borderRadius: "8px",
-                        }}
-                        onClick={() => reportToArchive(responsedReport._id)}
-                      >
-                        To archive
-                      </button>
-                    </div>
+                    ></div>
                   </div>
                 ) : (
-                  <p style={{ color: "red" }}>Not answered yet</p>
+                  <p
+                    style={{
+                      color: "red",
+                      textAlign: "center",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Not answered yet
+                  </p>
                 )}
               </div>
             </div>

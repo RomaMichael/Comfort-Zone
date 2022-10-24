@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+
 import { useAdminContext } from "../../context/AdminProvider";
-import { useAuthContext } from "../../context/AuthProvider";
+
 import { useReport } from "../../context/ReportProvider";
-import { useUsers } from "../../context/UsersProvider";
-import { AiFillCloseCircle } from "react-icons/ai";
 
 import "./Inbox.css";
 import AdminInbox from "./AdminInbox/AdminInbox";

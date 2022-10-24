@@ -87,6 +87,14 @@ export default function AdminInbox() {
     setArchiveItem(currentArchive);
   };
 
+  const closeArchive = (archiveId) => {
+    const archiveIndex = archivedReports.findIndex(
+      (archive) => archive._id === archiveId
+    );
+    const currentArchive = { ...archivedReports[archiveIndex], current: false };
+    setArchiveItem(currentArchive);
+  };
+
   return (
     <div className="admin-inbox">
       <div
@@ -138,7 +146,7 @@ export default function AdminInbox() {
           )}
         </div>
         <div
-          className="inbox-container"
+          className="adminInbox-container"
           style={{ display: "flex", gap: "50px" }}
         >
           <div
@@ -156,6 +164,7 @@ export default function AdminInbox() {
                 archive={archivedReports}
                 archiveItem={archiveItem}
                 watchArchive={watchArchive}
+                closeArchive={closeArchive}
               />
             )}
           </div>
@@ -164,8 +173,13 @@ export default function AdminInbox() {
             <div
               className="conversation-window"
               style={{
-                border: "1px solid grey",
-                width: "400px",
+                border: "1px solid black",
+                borderRadius: "15px",
+                width: "300px",
+                height: "200px",
+                position: "relative",
+                top: "75px",
+                backgroundColor: "#A9FFFC",
               }}
             >
               <div

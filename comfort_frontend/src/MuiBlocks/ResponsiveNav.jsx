@@ -14,6 +14,7 @@ export default function TemporaryDrawer({
   userAuth,
   logout,
   newReports,
+  myReports,
 }) {
   const [state, setState] = useState({
     right: false,
@@ -102,31 +103,36 @@ export default function TemporaryDrawer({
               ) : null}
             </div>
           ) : null}
-          <div className="inbox" style={{ display: "flex" }}>
-            <Link to="Inbox">
-              <AiOutlineMail style={{ color: "black" }} />
-            </Link>
-            {newReports.length ? (
-              <div
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  backgroundColor: "#AB7A5F",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: "100px",
-                  position: "relative",
-                  right: "7px",
-                  bottom: "7px",
-                }}
-              >
-                <p style={{ fontSize: "13px", color: "white" }}>
-                  {newReports.length}
-                </p>
-              </div>
-            ) : null}
-          </div>
+          {userAuth.isLoggedIn ? (
+            <div className="inbox" style={{ display: "flex" }}>
+              <Link to="Inbox">
+                <AiOutlineMail style={{ color: "black" }} />
+              </Link>
+              {newReports.length ? (
+                <div
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    backgroundColor: "#AB7A5F",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "100px",
+                    position: "relative",
+                    right: "7px",
+                    bottom: "7px",
+                  }}
+                >
+                  <p style={{ fontSize: "14px", color: "white" }}>
+                    {userAuth.role === "user"
+                      ? myReports.length
+                      : newReports.length}
+                  </p>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+
           <div
             className="login-responsive"
             style={{ display: "flex", alignItems: "center", gap: "5px" }}

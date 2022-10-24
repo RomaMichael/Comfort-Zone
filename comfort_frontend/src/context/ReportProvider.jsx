@@ -7,12 +7,15 @@ export function ReportProvider({ children }) {
   const [reports, setReports] = useState([]);
   const [unresponsed, setUnresponsed] = useState([]);
   const { userAuth } = useAuthContext();
+  const [loader, setLoader] = useState(false);
 
   const getReports = async () => {
+    setLoader(true);
     const response = await fetch("http://localhost:8005/reports");
     const resReport = await response.json();
 
     setReports(resReport);
+    setLoader(false);
     setUnresponsed(
       reports.filter(
         (report) => report.responsed === false && report.sender === userAuth._id
@@ -41,6 +44,7 @@ export function ReportProvider({ children }) {
     updateReport,
     setReports,
     answerToResponse,
+    loader,
   };
   return (
     <ReportContext.Provider value={value}>{children}</ReportContext.Provider>

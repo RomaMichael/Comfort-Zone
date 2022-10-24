@@ -1,0 +1,14 @@
+.archive {
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 850px) {
+  .archive {
+    min-height: 150vh;
+  }
+  .archive .main-archive-section {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+  }
+}/*# sourceMappingURL=ArchiveAdmin.css.map */

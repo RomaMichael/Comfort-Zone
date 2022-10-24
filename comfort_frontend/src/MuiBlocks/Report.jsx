@@ -9,7 +9,7 @@ import { useReport } from "../context/ReportProvider";
 export default function BasicPopover() {
   const [anchorEl, setAnchorEl] = useState(null);
   const { userAuth } = useAuthContext();
-  const { getReports, updateReport } = useReport();
+  const { getReports, loader } = useReport();
 
   const [reportToAdmin, setReportToAdmin] = useState({
     sender: userAuth._id,
@@ -40,7 +40,6 @@ export default function BasicPopover() {
     });
     const responseMessage = await response.json();
     getReports();
-    // updateReports(formDataMessage);
   };
 
   const handleClick = (event) => {
@@ -99,20 +98,24 @@ export default function BasicPopover() {
                   })
                 }
               />
-              <button
-                type="submit"
-                style={{
-                  width: "70px",
-                  height: "30px",
-                  marginTop: "30px",
-                  backgroundColor: "blue",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "7px",
-                }}
-              >
-                Send
-              </button>
+              {!loader ? (
+                <button
+                  type="submit"
+                  style={{
+                    width: "70px",
+                    height: "30px",
+                    marginTop: "30px",
+                    backgroundColor: "blue",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "7px",
+                  }}
+                >
+                  Send
+                </button>
+              ) : (
+                <p>Loading</p>
+              )}
             </form>
           </div>
         </Typography>

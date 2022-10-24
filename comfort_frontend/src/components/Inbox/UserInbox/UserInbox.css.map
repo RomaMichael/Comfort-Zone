@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"UserInbox.css"}
+{"version":3,"sources":["UserInbox.scss","UserInbox.css"],"names":[],"mappings":"AACE;EACE,aAAA;EACA,8BAAA;ACAJ;ADEI;EACE,gBAAA;EACA,aAAA;EACA,8BAAA;ACAN;ADEM;EACE,aAAA;EACA,sBAAA;EACA,SAAA;ACAR;ADCQ;EACE,YAAA;EACA,aAAA;EACA,8BAAA;ACCV;;ADMA;EACE;IACE,aAAA;IACA,sBAAA;IACA,8BAAA;ECHF;EDIE;IACE,aAAA;IACA,sBAAA;IACA,kBAAA;IACA,aAAA;ECFJ;EDIM;IACE,gBAAA;ECFR;EDGQ;IACE,aAAA;IACA,sBAAA;IACA,mBAAA;IACA,SAAA;ECDV;AACF","file":"UserInbox.css"}

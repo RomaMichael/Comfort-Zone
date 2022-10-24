@@ -2,7 +2,6 @@ import { useParams, Link } from "react-router-dom";
 import "../ProductPage/ProductPage.css";
 import { useState } from "react";
 import ProductCounter from "../ProductCounter/ProductCounter";
-import { AiOutlineCheck } from "react-icons/ai";
 import RatingStars from "../../MuiBlocks/RatingStars";
 import { useProducts } from "../../context/ProductProvider";
 import { useAuthContext } from "../../context/AuthProvider";

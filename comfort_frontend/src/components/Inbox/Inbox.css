@@ -1,8 +1,17 @@
 .inbox-page {
-  height: 100vh;
+  min-height: 150vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 .inbox-page .inbox-container {
   width: 90vw;
+  height: 100vh;
+}
+
+@media screen and (max-width: 850px) {
+  .inbox-page {
+    height: 150vh;
+  }
 }/*# sourceMappingURL=Inbox.css.map */

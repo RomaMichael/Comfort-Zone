@@ -1,3 +1,18 @@
 .admin-inbox {
+  height: 100vh;
   margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media screen and (max-width: 850px) {
+  .admin-inbox {
+    .adminInbox-container {
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+    }
+  }
 }

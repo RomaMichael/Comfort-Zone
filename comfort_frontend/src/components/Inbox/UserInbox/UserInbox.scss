@@ -1,0 +1,48 @@
+.user-inbox {
+  .user-inbox-container {
+    display: flex;
+    justify-content: space-between;
+
+    .reports-list {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+
+      .my-reports {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .reports-filters {
+          width: 400px;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .user-inbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .user-inbox-container {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      bottom: 100px;
+      .reports-list {
+        .my-reports {
+          margin-top: 50px;
+          .reports-filters {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+          }
+        }
+      }
+    }
+  }
+}

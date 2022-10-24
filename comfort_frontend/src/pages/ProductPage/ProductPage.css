@@ -1,8 +1,10 @@
-.productPage .product-page {
+.productPage {
   width: 100vw;
+  display: flex;
+  justify-content: center;
 }
 .productPage .product-page .title {
-  width: 100%;
+  width: 100vw;
   height: 120px;
   background-color: #eaded7;
   display: flex;
@@ -27,6 +29,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.productPage .product-page .each-product .product-container {
+  width: 90vw;
 }
 .productPage .product-page .each-product .product-container .return-to-products {
   height: 150px;

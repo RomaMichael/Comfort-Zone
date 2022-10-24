@@ -26,8 +26,11 @@ export default function Nav() {
   const { newReports, unresponsed, getReports, reports, setUnresponsed } =
     useReport();
 
-  const reportsToAdmin = reports.filter(
-    (report) => report.sender === userAuth._id
+  const myReports = reports.filter(
+    (report) =>
+      report.sender === userAuth._id &&
+      report.userSeen === false &&
+      report.responsed === true
   );
 
   useEffect(() => {
@@ -158,7 +161,7 @@ export default function Nav() {
                 >
                   <p style={{ fontSize: "14px", color: "white" }}>
                     {userAuth.role === "user"
-                      ? reportsToAdmin.length
+                      ? myReports.length
                       : newReports.length}
                   </p>
                 </div>
@@ -209,6 +212,7 @@ export default function Nav() {
             userAuth={userAuth}
             logout={logout}
             newReports={newReports}
+            myReports={myReports}
           />
         </div>
       </div>
