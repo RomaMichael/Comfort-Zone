@@ -3,7 +3,7 @@ import { useProducts } from "../../context/ProductProvider";
 import CreateNew from "./CreateNew/CreateNew";
 import Delete from "./Delete/Delete";
 import "./ManageProducts.css";
-import Statistics from "./Statistics/Statistics";
+import Information from "./Information/Information";
 import Update from "./Update/Update";
 
 export default function ManageProducts() {
@@ -53,7 +53,7 @@ export default function ManageProducts() {
             </div>
 
             <div className="information">
-              <button onClick={() => StatisticsPage()}>Statistics</button>
+              <button onClick={() => StatisticsPage()}>Information</button>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function ManageProducts() {
         {createState ? <CreateNew /> : null}
         {deleteState ? <Delete /> : null}
         {updateState ? <Update /> : null}
-        {statisticsState ? <Statistics /> : null}
+        {statisticsState ? <Information /> : null}
       </div>
     </div>
   );

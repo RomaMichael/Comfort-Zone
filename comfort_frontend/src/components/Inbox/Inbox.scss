@@ -1,5 +1,5 @@
 .inbox-page {
-  min-height: 150vh;
+  height: 170vh;
 
   display: flex;
   flex-direction: column;
@@ -7,12 +7,6 @@
   justify-content: space-between;
   .inbox-container {
     width: 90vw;
-    height: 100vh;
-  }
-}
-
-@media screen and (max-width: 850px) {
-  .inbox-page {
-    height: 150vh;
+    height: 170vh;
   }
 }

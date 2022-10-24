@@ -1,0 +1,21 @@
+.statistics {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+}
+.statistics .statistics-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.statistics .statistics-container .statistics-title {
+  text-align: center;
+}
+.statistics .statistics-container .information {
+  display: flex;
+  justify-content: center;
+}
+.statistics .statistics-container .information .info-container {
+  font-size: 20px;
+}/*# sourceMappingURL=Information.css.map */
