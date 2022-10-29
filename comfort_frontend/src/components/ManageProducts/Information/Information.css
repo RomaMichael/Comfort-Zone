@@ -7,6 +7,7 @@
   width: 90%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 50px;
 }
 .statistics .statistics-container .statistics-title {
@@ -14,6 +15,8 @@
 }
 .statistics .statistics-container .information {
   display: flex;
+  border: 1px solid black;
+  width: 500px;
   justify-content: center;
 }
 .statistics .statistics-container .information .info-container {

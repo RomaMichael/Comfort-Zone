@@ -44,6 +44,14 @@ export function AuthProvider({ children }) {
     });
   };
 
+  const updateUserRole = async (updatedUser) => {
+    await fetch(`http://localhost:8005/users/updateRole/${updatedUser._id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...updatedUser, role: updatedUser.role }),
+    });
+  };
+
   const confirmAndAddOrder = async (newOrder) => {
     const newOrderWithDates = newOrder.map((product) => ({
       ...product,
@@ -85,6 +93,7 @@ export function AuthProvider({ children }) {
     updateCart,
     confirmAndAddOrder,
     updateTotalSpend,
+    updateUserRole,
   };
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 }

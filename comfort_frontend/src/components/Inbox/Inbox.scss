@@ -1,5 +1,6 @@
 .inbox-page {
-  height: 170vh;
+  height: auto;
+  min-height: 450px;
 
   display: flex;
   flex-direction: column;

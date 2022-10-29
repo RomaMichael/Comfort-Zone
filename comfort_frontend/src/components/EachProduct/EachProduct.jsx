@@ -3,6 +3,7 @@ import React from "react";
 import "../EachProduct/EachProduct.css";
 import { Link } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useAuthContext } from "../../context/AuthProvider";
 
 export default function EachProduct({
   img,
@@ -12,6 +13,8 @@ export default function EachProduct({
   infoStyle,
   infoClass,
 }) {
+  const { userAuth } = useAuthContext();
+  const discount = (15 * price) / 100;
   return (
     <div className={infoClass}>
       <div className="img-container">
@@ -37,7 +40,14 @@ export default function EachProduct({
       <div className="information-section">
         <div className="img-text">
           <p>{name}</p>
-          <p>${price}</p>
+          {userAuth.role === "premium-user" ? (
+            <p>
+              <del style={{ color: "black" }}>{price}$</del>{" "}
+              {(price - discount).toFixed(2)}
+            </p>
+          ) : (
+            <p>{price}$</p>
+          )}
         </div>
         <div className="expand-information" style={infoStyle}>
           <p className="expand-text">

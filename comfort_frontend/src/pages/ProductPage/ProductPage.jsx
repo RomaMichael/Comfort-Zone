@@ -25,6 +25,8 @@ export function ProductPage() {
     return null;
   }
 
+  const discount = (15 * currentProduct.price) / 100;
+
   const addToCart = () => {
     let newCart;
     let prevState = userAuth.cartState;
@@ -134,7 +136,16 @@ export function ProductPage() {
                     </div>
                     <RatingStars rating={rating} setRating={setRating} />
                     <div className="product-price">
-                      <h5>${currentProduct.price}</h5>
+                      {userAuth.role === "premium-user" ? (
+                        <h5>
+                          <del style={{ color: "black" }}>
+                            {currentProduct.price}$
+                          </del>{" "}
+                          {(currentProduct.price - discount).toFixed(2)}$
+                        </h5>
+                      ) : (
+                        <h5>{currentProduct.price}$</h5>
+                      )}
                     </div>
                     <div className="product-description">
                       <p>{currentProduct.text}</p>

@@ -15,6 +15,17 @@ const updateCart = async (id, user) => {
   }
 };
 
+const updateRole = async (id, user) => {
+  try {
+    const updatedRole = await User.findByIdAndUpdate(id, user, {
+      new: true,
+    });
+    return updatedRole;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const createUser = async (user, file) => {
   try {
     const { password, ...restOfUser } = user;
@@ -40,4 +51,4 @@ const createUser = async (user, file) => {
   }
 };
 
-module.exports = { createUser, updateCart };
+module.exports = { createUser, updateCart, updateRole };

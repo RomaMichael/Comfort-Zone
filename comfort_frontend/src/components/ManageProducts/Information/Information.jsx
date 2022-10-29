@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useUsers } from "../../../context/UsersProvider";
 import "./Information.css";
 
 export default function Information() {
-  const { users } = useUsers();
+  const { users, getUsers } = useUsers();
 
+  useEffect(() => {
+    getUsers();
+  }, []);
   const incomes = users.reduce((accumulator, user) => {
     return accumulator + user.totalSpend;
   }, 0);
 
-  const arrayMostOrders = users.sort(function (a, b) {
-    return a.orders.length - b.orders.length;
+  const arrayMostOrders = users.sort((a, b) => {
+    return b.orders.length - a.orders.length;
   });
 
-  const arrayMostSpend = users.sort(function (a, b) {
-    return a.totalSpend - b.orders.totalSpend;
+  const usersBySpend = [...users];
+
+  const arrayMostSpend = usersBySpend.sort((a, b) => {
+    return a.totalSpend - b.totalSpend;
   });
 
   return (
@@ -30,7 +36,7 @@ export default function Information() {
               <span style={{ fontWeight: "700" }}> The shop earns: </span>
 
               <span style={{ color: "blue", fontWeight: "700" }}>
-                {incomes}$
+                {incomes.toFixed(2)}$
               </span>
             </p>
             <p style={{ fontWeight: "700" }}>
@@ -51,7 +57,7 @@ export default function Information() {
               <span style={{ fontWeight: "700" }}> Top buyer(by orders): </span>
               <span style={{ fontWeight: "700", color: "blue" }}>
                 {" "}
-                {arrayMostOrders.at(-1).username}
+                {arrayMostOrders[0].username}
               </span>
             </p>
             <p>
@@ -61,7 +67,7 @@ export default function Information() {
               </span>{" "}
               <span style={{ fontWeight: "700", color: "blue" }}>
                 {" "}
-                {arrayMostSpend[0].username}
+                {arrayMostSpend.at(-1).username}
               </span>
             </p>
           </div>

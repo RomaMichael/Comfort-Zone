@@ -20,10 +20,10 @@ export default function Nav() {
   const { setAdminAuth } = useAdminContext();
   const [adminState] = useState(false);
   const navigate = useNavigate();
-  const { adminAuth } = useAdminContext();
+
   const [cartCount, setCartCount] = useState(0);
 
-  const { newReports, unresponsed, getReports, reports, setUnresponsed } =
+  const { newReports, getReports, reports, setUnresponsed } =
     useReport();
 
   const myReports = reports.filter(

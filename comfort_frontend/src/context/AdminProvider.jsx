@@ -18,10 +18,7 @@ export function AdminProvider({ children }) {
 
     if (user._doc.role === "admin") {
       setAdminAuth(true);
-    } else {
-      setAdminAuth(false);
     }
-    return user;
   };
 
   useEffect(() => {

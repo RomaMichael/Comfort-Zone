@@ -1,20 +1,24 @@
 const router = require("express").Router();
 const passport = require("passport");
 const { User } = require("../model/user.model");
-const { createUser, updateCart } = require("../services/user.services");
+const {
+  createUser,
+  updateCart,
+  updateRole,
+} = require("../services/user.services");
 const upload = require("../config/multer.config");
 const { isAuth, isAdmin } = require("../middlewares/auth.middleware");
 
 router.get("/check-auth", isAuth, (req, res) => {
   try {
-    res.status(200).json(req.user._doc);
+    res.json(req.user._doc);
   } catch (error) {
     console.log(error);
   }
 });
 router.post("/check-admin", isAdmin, (req, res) => {
   try {
-    res.status(200).json(req.user);
+    res.json(req.user);
   } catch (error) {
     console.log(error);
   }
@@ -83,7 +87,14 @@ router.post("/logout", (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const updated = await updateCart(req.params.id, req.body);
+
   res.json(updated);
+});
+
+router.put("/updateRole/:id", async (req, res) => {
+  const updatedRole = await updateRole(req.params.id, req.body);
+
+  res.json(updatedRole);
 });
 
 module.exports = router;

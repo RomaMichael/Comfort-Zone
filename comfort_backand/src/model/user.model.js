@@ -20,14 +20,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
     default: "user",
-    enum: ["admin", "user"],
+    enum: ["admin", "user", "shop-admin", "premium-user"],
   },
-  // messages: { type: Array, required: true },
+
   avatar: avatarSchema,
   cartState: { type: [productSchema], required: false },
   orders: { type: Object, require: true },
   totalSpend: { type: Number, require: true },
-  crationDate: { type: String, required: true },
+  creationDate: { type: String, required: true },
 });
 
 const User = mongoose.model("User", userSchema);

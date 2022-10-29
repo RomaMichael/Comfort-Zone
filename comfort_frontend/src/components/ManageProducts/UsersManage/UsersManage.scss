@@ -1,0 +1,32 @@
+.users-manage {
+  height: 100vh;
+  .users-manage-container {
+    .users-manage-title {
+      display: flex;
+      justify-content: center;
+    }
+    .users-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .each-user {
+        display: flex;
+        gap: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        width: 200px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 100px;
+        }
+        p {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

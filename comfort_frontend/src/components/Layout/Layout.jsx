@@ -20,14 +20,16 @@ export default function Layout() {
     if (userAuth.isLoggedIn) {
       setUserAuth((prev) => ({
         ...prev,
-        totalSpend: userAuth.orders.reduce(
-          (accumalator, order) =>
-            accumalator +
-            order.reduce((prev, order) => {
-              return prev + order.price * order.counter;
-            }, 0),
-          0
-        ),
+        totalSpend: userAuth.orders
+          ? userAuth.orders.reduce(
+              (accumalator, order) =>
+                accumalator +
+                order.reduce((prev, order) => {
+                  return prev + order.price * order.counter;
+                }, 0),
+              0
+            )
+          : 0,
       }));
     }
   }, [userAuth.isLoggedIn]);

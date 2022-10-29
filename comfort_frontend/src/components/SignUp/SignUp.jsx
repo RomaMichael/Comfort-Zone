@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
-
+import { useNavigate, Link } from "react-router-dom";
 import { nanoid } from "nanoid";
 
 import "./SignUp.css";
@@ -11,7 +11,7 @@ export default function SignUp() {
     orders: [],
     creationDate: moment().format("MMM Do YY"),
   });
-
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const createUser = async (createdUser) => {
@@ -23,15 +23,16 @@ export default function SignUp() {
     formData.append("avatar", createdUser.avatar);
     formData.append("orders", createdUser.orders);
 
-    formData.append("crationDate", createdUser.creationDate);
+    formData.append("creationDate", createdUser.creationDate);
 
-    const response = await fetch("http://localhost:8005/users/register", {
+    await fetch("http://localhost:8005/users/register", {
       method: "POST",
 
       body: formData,
     });
 
     setIsLoading(false);
+    navigate("/home", { replace: true });
   };
 
   const signUp = async (event) => {
@@ -113,7 +114,7 @@ export default function SignUp() {
           </div>
         </label>
         {isLoading ? (
-          <p>Loading user</p>
+          <p>Loading</p>
         ) : (
           <button type="submit" className="submit-button">
             Create

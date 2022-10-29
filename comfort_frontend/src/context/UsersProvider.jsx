@@ -17,7 +17,7 @@ export function UserProvider({ children }) {
     getUsers();
   }, []);
 
-  const value = { users, isLoadingUsers };
+  const value = { users, isLoadingUsers, getUsers };
   return (
     <UsersContext.Provider value={value}>{children}</UsersContext.Provider>
   );
