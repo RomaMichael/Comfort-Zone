@@ -8,7 +8,7 @@ import OrderConfirm from "../../MuiBlocks/OrderConfirm";
 export default function Cart() {
   const [subTotal, setSubTotal] = useState(0);
   const [shippingPayment, setShippingPayment] = useState(0);
-  const { userAuth, updateCart, setUserAuth, confirmAndAddOrder } =
+  const { userAuth, saveCartToDb, setUserAuth, confirmAndAddOrder } =
     useAuthContext();
   const { cartState } = userAuth;
 
@@ -33,10 +33,7 @@ export default function Cart() {
     });
   }, [userAuth]);
 
-  const clearCart = () => {
-    setUserAuth({ ...userAuth, cartState: [] });
-    updateCart([]);
-  };
+  const clearCart = () => {};
 
   return (
     <div className="cartPage">

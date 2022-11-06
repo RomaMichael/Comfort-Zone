@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 
 export default function OrderConfirm({ confirmation, clearCart }) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [count, setCount] = useState(0);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -15,10 +14,8 @@ export default function OrderConfirm({ confirmation, clearCart }) {
   };
 
   const confirm = () => {
-    setCount(1);
-    clearCart();
     confirmation();
-    setCount(2);
+    clearCart();
   };
 
   const open = Boolean(anchorEl);

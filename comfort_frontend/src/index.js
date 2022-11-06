@@ -11,7 +11,6 @@ import { Provider } from "react-redux";
 import { AdminProvider } from "./context/AdminProvider";
 import { UserProvider } from "./context/UsersProvider";
 import { ReportProvider } from "./context/ReportProvider";
-import { StatisticProvider } from "./context/StatisticProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,9 +21,7 @@ root.render(
           <AdminProvider>
             <UserProvider>
               <ReportProvider>
-                {/* <StatisticProvider> */}
                 <App />
-                {/* </StatisticProvider> */}
               </ReportProvider>
             </UserProvider>
           </AdminProvider>

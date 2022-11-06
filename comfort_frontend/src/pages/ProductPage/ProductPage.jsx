@@ -8,7 +8,7 @@ import { useAuthContext } from "../../context/AuthProvider";
 
 export function ProductPage() {
   const { products } = useProducts();
-  const { userAuth, setUserAuth, updateCart } = useAuthContext();
+  const { userAuth, setUserAuth, saveCartToDb } = useAuthContext();
   const params = useParams();
   const currentProduct = products.find((product) => product._id === params.id);
 
@@ -43,7 +43,7 @@ export function ProductPage() {
     }
 
     setUserAuth((prevUserAuth) => ({ ...prevUserAuth, cartState: newCart }));
-    updateCart(newCart);
+    saveCartToDb(newCart);
     return newCart;
   };
 

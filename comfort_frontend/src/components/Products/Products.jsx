@@ -13,6 +13,14 @@ import { useDispatch } from "react-redux/es/exports";
 import { clearCategory } from "../../Redux/filterCategorySlice";
 import { clearColors } from "../../Redux/filterColorSlice";
 import { useAuthContext } from "../../context/AuthProvider";
+import {
+  filterByColor,
+  filterByPrice,
+  filterBySearchValue,
+  filterByShipping,
+  filterByBrand,
+  filterByCategory,
+} from "./filter-helpers";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -83,42 +91,30 @@ export default function Products() {
     setInfoStyle(hideInfo);
   };
 
-  //FILTER
-
   const filter = () => {
     let filtered = [...products];
 
     if (filterCategory) {
-      filtered = filtered.filter(
-        (product) => product.category === filterCategory
-      );
+      filtered = filterByCategory(filterCategory, filtered);
     }
 
     if (filterSearch) {
-      filtered = filtered.filter((product) =>
-        product.name.toLowerCase().includes(filterSearch)
-      );
+      filtered = filterBySearchValue(filterSearch, filtered);
     }
 
     if (filterColor) {
-      filtered = filtered.filter((product) =>
-        product.colors.includes(filterColor)
-      );
+      filtered = filterByColor(filterColor, filtered);
     }
 
     if (filterBrand) {
-      filtered = filtered.filter((product) => product.brand == filterBrand);
-      if (filterBrand === "All") {
-      }
+      filtered = filterByBrand(filterBrand, filtered);
     }
 
     if (filterPrice) {
-      filtered = filtered.filter(
-        (product) => product.price < Number(filterPrice)
-      );
+      filtered = filterByPrice(filterPrice, filtered);
     }
     if (shippingState) {
-      filtered = filtered.filter((product) => product.shipping == false);
+      filtered = filterByShipping(shippingState, filtered);
     }
 
     return filtered;

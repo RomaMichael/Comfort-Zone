@@ -44,7 +44,7 @@ export default function Information() {
               The shop has <span style={{ color: "blue" }}>
                 {users.length}
               </span>{" "}
-              users
+              costumers
             </p>
             <p style={{ fontWeight: "700" }}>
               Avarage spends per user:{" "}

@@ -10,6 +10,7 @@ export function ProductProvider({ children }) {
     try {
       const res = await fetch("http://localhost:8005/products");
       const products = await res.json();
+      console.log(products);
       setProducts(products);
       setIsLoading(false);
     } catch (error) {
@@ -21,7 +22,7 @@ export function ProductProvider({ children }) {
     fetchProducts();
   }, []);
 
-  const value = { products, setProducts, isLoadingProducts };
+  const value = { products, setProducts, isLoadingProducts, fetchProducts };
 
   return (
     <ProductContext.Provider value={value}>{children}</ProductContext.Provider>

@@ -1,39 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Home/Home.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useProducts } from "../../context/ProductProvider";
 
+import { useAdminContext } from "../../context/AdminProvider";
+import FeatureProducts from "../../MuiBlocks/FeatureProducts";
+
 export default function Home() {
   const { isLoadingProducts, products } = useProducts();
 
-  const [firstPRoductIndex, setFirstProductIndex] = useState(
-    Math.trunc(Math.random() * products.length)
-  );
-  const [secondPRoductIndex, setSecondProductIndex] = useState(
-    Math.trunc(Math.random() * products.length)
-  );
-  const [thirdPRoductIndex, setThirdProductIndex] = useState(
-    Math.trunc(Math.random() * products.length)
-  );
-
-  useEffect(() => {
-    if (firstPRoductIndex == secondPRoductIndex) {
-      setSecondProductIndex(Math.trunc(Math.random() * products.length));
-    }
-    if (
-      thirdPRoductIndex == secondPRoductIndex ||
-      thirdPRoductIndex == firstPRoductIndex
-    ) {
-      setThirdProductIndex(Math.trunc(Math.random() * products.length));
-    }
-  }, []);
+  const [firstExample, setFirstExample] = useState(0);
+  const [secondExample, setSecondExample] = useState(1);
+  const [thirdExample, setThirdExample] = useState(2);
 
   let presentation = [
-    products[Math.trunc(Math.random() * products.length)],
-    products[Math.trunc(Math.random() * products.length)],
-    products[Math.trunc(Math.random() * products.length)],
+    products[firstExample],
+    products[secondExample],
+    products[thirdExample],
   ];
+
+  const { adminAuth } = useAdminContext();
 
   return (
     <div className="home">
@@ -123,6 +110,23 @@ export default function Home() {
             <button>ALL PRODUCTS</button>
           </Link>
         </div>
+        {adminAuth ? (
+          <div
+            className="set-featured-products"
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+
+              width: "85%",
+            }}
+          >
+            <FeatureProducts
+              setFirstExample={setFirstExample}
+              setSecondExample={setSecondExample}
+              setThirdExample={setThirdExample}
+            />{" "}
+          </div>
+        ) : null}
       </div>
       <div className="custom-furniture">
         <div className="furniture-title">

@@ -64,7 +64,7 @@ export default function UserProps({ user }) {
               {user.orders.length}
             </p>{" "}
             <span style={{ fontWeight: "700" }}>Spend:</span>{" "}
-            {user.orders ? user.totalSpend.toFixed(2) : 0}{" "}
+            {user.orders ? user.totalSpend.toFixed(2) : 0} $
           </div>
           <hr />
           <div

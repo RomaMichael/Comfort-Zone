@@ -8,17 +8,19 @@ export function AdminProvider({ children }) {
   const { userAuth } = useAuthContext();
 
   const checkAdmin = async () => {
-    const response = await fetch("http://localhost:8005/users/check-admin", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userAuth),
-      credentials: "include",
-    });
-    const user = await response.json();
-
-    if (user._doc.role === "admin") {
-      setAdminAuth(true);
-    }
+    try {
+      const response = await fetch("http://localhost:8005/users/check-admin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userAuth),
+        credentials: "include",
+      });
+      const user = await response.json();
+      console.log(user);
+      if (user._doc.role === "admin") {
+        setAdminAuth(true);
+      }
+    } catch (err) {}
   };
 
   useEffect(() => {

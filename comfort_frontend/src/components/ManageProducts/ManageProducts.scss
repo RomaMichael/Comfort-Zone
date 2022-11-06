@@ -1,5 +1,4 @@
 .manage-products {
-  height: 100vh;
   display: flex;
   justify-content: center;
   margin-top: 50px;
@@ -47,7 +46,6 @@
 
 @media screen and (max-width: 850px) {
   .manage-products {
-    height: 900px;
     .manage-container {
       .admin-buttons {
         display: flex;

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import moment from "moment";
+import { calcTotalSpent } from "./helpers/calc-total-spent";
 
 const authContext = createContext();
 
@@ -29,7 +30,7 @@ export function AuthProvider({ children }) {
     checkAuth();
   }, []);
 
-  const updateCart = async (cartUpdate) => {
+  const saveCartToDb = async (cartUpdate) => {
     await fetch(`http://localhost:8005/users/${userAuth._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -66,22 +67,14 @@ export function AuthProvider({ children }) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ...userAuth,
-            totalSpend: updatedOrders.reduce(
-              (accumalator, order) =>
-                accumalator +
-                order.reduce((prev, order) => {
-                  return prev + order.price * order.counter;
-                }, 0),
-              0
-            ),
+            totalSpend: updatedOrders.reduce(calcTotalSpent, 0),
             orders: updatedOrders,
             cartState: [],
           }),
         }
       );
       const updatedUser = await response.json();
-      setUserAuth(updatedUser);
-      checkAuth();
+      setUserAuth({ ...updatedUser, isLoggedIn: true });
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +83,7 @@ export function AuthProvider({ children }) {
   const value = {
     userAuth,
     setUserAuth,
-    updateCart,
+    saveCartToDb: saveCartToDb,
     confirmAndAddOrder,
     updateTotalSpend,
     updateUserRole,

@@ -15,6 +15,12 @@ const filters = createSlice({
   reducers: {
     allColors: (state) => {
       state.filterColor = "";
+      state.colorGreen = false;
+      state.colorRed = false;
+      state.colorBlue = false;
+      state.colorYellow = false;
+      state.colorBlack = false;
+      state.filterColor = false;
     },
     setRed: (state) => {
       state.colorRed = !state.colorRed;

@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthProvider";
 import "./LoginPage.css";
+import { useProducts } from "../../context/ProductProvider";
 
 const theme = createTheme();
 
@@ -17,8 +18,10 @@ export default function LoginPage() {
   const { setUserAuth } = useAuthContext();
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
+  const { fetchProducts } = useProducts();
 
   const signIn = async (credentials) => {
+    fetchProducts();
     const response = await fetch("http://localhost:8005/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
