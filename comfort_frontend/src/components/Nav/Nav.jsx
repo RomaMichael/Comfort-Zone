@@ -23,8 +23,7 @@ export default function Nav() {
 
   const [cartCount, setCartCount] = useState(0);
 
-  const { newReports, getReports, reports, setUnresponsed } =
-    useReport();
+  const { newReports, getReports, reports, setUnresponsed } = useReport();
 
   const myReports = reports.filter(
     (report) =>
@@ -93,7 +92,7 @@ export default function Nav() {
             }}
           >
             <img
-              src="https://react-course-comfy-sloth-store.netlify.app/static/media/logo.221f6b13.svg"
+              src="https://www.kadencewp.com/wp-content/uploads/2020/10/alogo-4.png"
               alt="logo"
             />
           </Link>

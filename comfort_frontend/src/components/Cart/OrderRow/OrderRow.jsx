@@ -7,7 +7,7 @@ import { useAuthContext } from "../../../context/AuthProvider";
 export default function OrderRow({ product }) {
   const [productCount, setProductCount] = useState(product.counter);
 
-  const { updateCart, userAuth, setUserAuth } = useAuthContext();
+  const { updateTotalSpend, userAuth, setUserAuth } = useAuthContext();
 
   const updateCountAndCart = (newQuantity) => {
     setProductCount(newQuantity);
@@ -17,7 +17,7 @@ export default function OrderRow({ product }) {
       );
       const newCart = [...prevState.cartState];
       newCart[index].counter = newQuantity;
-      updateCart(newCart);
+      updateTotalSpend(newCart);
 
       return {
         ...prevState,
@@ -32,7 +32,7 @@ export default function OrderRow({ product }) {
     );
 
     setUserAuth({ ...userAuth, cartState: remainingCart });
-    updateCart(remainingCart);
+    updateTotalSpend(remainingCart);
   };
 
   return (

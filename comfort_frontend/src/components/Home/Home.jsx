@@ -51,12 +51,13 @@ export default function Home() {
           <div className="pics">
             <img
               className="main-pic"
-              src="https://react-course-comfy-sloth-store.netlify.app/static/media/hero-bcg.a876f19f.jpeg"
+              src="https://tse4.mm.bing.net/th?id=OIP.1BcaifHZJYTzIdbULjiSWAHaHa&pid=Api&P=0"
               alt="main pic"
+              style={{ width: "425px", height: "550px" }}
             />
             <img
               className="small-pic"
-              src="https://react-course-comfy-sloth-store.netlify.app/static/media/hero-bcg-2.78991864.jpeg"
+              src="https://tse1.mm.bing.net/th?id=OIP.dYXv6OWN_BXs_FCxCAI2PwHaEK&pid=Api&P=0"
               alt="small pic"
             />
           </div>

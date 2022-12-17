@@ -4,8 +4,7 @@ import "./UserProfile.css";
 import History from "../../MuiBlocks/History";
 
 export default function UserProfile() {
-  const { userAuth, setUserAuth, updateCart, updateTotalSpend } =
-    useAuthContext();
+  const { userAuth } = useAuthContext();
 
   const orders = userAuth.orders;
 
