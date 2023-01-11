@@ -15,48 +15,31 @@ import { useProducts } from "../../context/ProductProvider";
 const theme = createTheme();
 
 export default function LoginPage() {
-  const { setUserAuth } = useAuthContext();
+  const { userAuth, signIn } = useAuthContext();
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
   const { fetchProducts } = useProducts();
 
-  const signIn = async (credentials) => {
-    fetchProducts();
-    const response = await fetch("http://localhost:8005/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(credentials),
-      credentials: "include",
-    });
-    const { user } = await response.json();
+  const login = async (credentials) => {
+    signIn(credentials);
 
-    setUserAuth({ ...user, isLoggedIn: true });
-
-    if (response.status === 200) {
-      if (user.cartState.length !== 0) {
-        navigate("/cart", { replace: true });
-        return true;
-      } else {
-        navigate("/products", { replace: true });
-        return true;
-      }
+    if (userAuth.cartState.length !== 0) {
+      navigate("/cart", { replace: true });
+      return true;
     } else {
-      return false;
+      navigate("/products", { replace: true });
+      return true;
     }
   };
 
   const loginUser = async (event) => {
     event.preventDefault();
-    await signIn(credentials);
+    await login(credentials);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    login();
   };
 
   return (

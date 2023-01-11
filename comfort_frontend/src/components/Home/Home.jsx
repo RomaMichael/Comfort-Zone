@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Home/Home.css";
-import { AiOutlineSearch } from "react-icons/ai";
+
 import { useProducts } from "../../context/ProductProvider";
 
 import { useAdminContext } from "../../context/AdminProvider";
-import FeatureProducts from "../../MuiBlocks/FeatureProducts";
 
 export default function Home() {
   const { isLoadingProducts, products } = useProducts();
 
-  const [firstExample, setFirstExample] = useState(0);
-  const [secondExample, setSecondExample] = useState(1);
-  const [thirdExample, setThirdExample] = useState(2);
+  const popularPRoducts = [...products];
+  let mostPopular = [];
 
-  let presentation = [
-    products[firstExample],
-    products[secondExample],
-    products[thirdExample],
-  ];
+  let sortedViews = popularPRoducts.sort((a, b) => {
+    return a.views - b.views;
+  });
+  mostPopular = sortedViews.slice(products.length - 3);
 
   const { adminAuth } = useAdminContext();
 
@@ -65,45 +62,57 @@ export default function Home() {
       </div>
       <div className="feature-products">
         <div className="fp-title">
-          <h1>Featured Products</h1>
+          <h1>Popular Products</h1>
         </div>
         <div className="products-example">
           {isLoadingProducts ? (
             <div>Loading...........</div>
           ) : (
-            presentation.map((product, i) => (
-              <div
-                className="presentation-products"
-                style={{ overflow: "hidden" }}
-                key={i}
-              >
-                <div
-                  className="present-pic"
-                  style={{
-                    backgroundImage: `url("${product.img}")`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <div className="onHover-home">
-                    {" "}
-                    <Link to={`/Products/${product._id}`}>
-                      <div className="open-product">
-                        <AiOutlineSearch className="search-icon" />
+            mostPopular.map((product) => {
+              if (product.views > 0) {
+                return (
+                  <Link
+                    to={`products/${product._id}`}
+                    style={{ textDecoration: "none", color: "black" }}
+                    key={product._id}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        border: "1px solid black",
+                        borderRadius: "10px",
+                        backgroundColor: "transparent",
+                        width: "250px",
+                      }}
+                      key={product.name}
+                    >
+                      <img
+                        src={product.img}
+                        alt={product.name}
+                        style={{
+                          width: "250px",
+                          height: "150px",
+                          borderRadius: "10px 10px 0px 0px",
+                        }}
+                      />
+                      <div
+                        className="card-info"
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        <h4>{product.name}</h4>
+                        <p>{product.price}$</p>
                       </div>
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="product-info" style={{}}>
-                  <p>{product.name}</p>{" "}
-                  <p>
-                    <span style={{ color: "#AD7A5F" }}>${product.price}</span>
-                  </p>
-                </div>
-              </div>
-            ))
+                      <p>Viewed {product.views} times</p>
+                    </div>
+                  </Link>
+                );
+              }
+            })
           )}
         </div>
         <div className="products-button">
@@ -111,23 +120,6 @@ export default function Home() {
             <button>ALL PRODUCTS</button>
           </Link>
         </div>
-        {adminAuth ? (
-          <div
-            className="set-featured-products"
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-
-              width: "85%",
-            }}
-          >
-            <FeatureProducts
-              setFirstExample={setFirstExample}
-              setSecondExample={setSecondExample}
-              setThirdExample={setThirdExample}
-            />{" "}
-          </div>
-        ) : null}
       </div>
       <div className="custom-furniture">
         <div className="furniture-title">

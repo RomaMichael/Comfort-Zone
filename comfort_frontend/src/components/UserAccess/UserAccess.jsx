@@ -12,7 +12,7 @@ export default function AdminAccess({ adminAccess, setAdminAccess }) {
   const manageButton = () => {
     setAdminAccess(!adminAccess);
   };
-  console.log(adminAuth);
+
   return (
     <div className="userAccess">
       <div className="user-container">

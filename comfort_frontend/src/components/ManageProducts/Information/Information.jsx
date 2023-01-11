@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useUsers } from "../../../context/UsersProvider";
+import Chart from "./Charts";
 import "./Information.css";
 
 export default function Information() {
@@ -73,6 +74,7 @@ export default function Information() {
           </div>
         </div>
       </div>
+      {/* <Chart /> */}
     </div>
   );
 }

@@ -7,9 +7,6 @@ const isAuth = (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  console.log("--------------------------------------------------------");
-  console.log(req.body.role);
-  console.log(req.isAuthenticated());
   if (req.isAuthenticated() && req.body.role === "admin") {
     next();
   } else {

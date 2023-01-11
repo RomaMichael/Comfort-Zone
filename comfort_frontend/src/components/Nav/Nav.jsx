@@ -33,12 +33,6 @@ export default function Nav() {
   );
 
   useEffect(() => {
-    if (!userAuth.isLoggedIn) {
-      navigate("/home", { replace: true });
-    }
-  }, []);
-
-  useEffect(() => {
     getReports();
     setUnresponsed(
       reports.filter(
@@ -46,14 +40,6 @@ export default function Nav() {
       )
     );
   }, [userAuth]);
-
-  useEffect(() => {}, []);
-
-  useEffect(() => {
-    if (!userAuth) {
-      navigate("/home", { replace: true });
-    }
-  }, []);
 
   useEffect(() => {
     if (userAuth.isLoggedIn) {
@@ -68,14 +54,14 @@ export default function Nav() {
   const logout = async () => {
     setAdminAuth(false);
     try {
-      const response = await fetch("http://localhost:8005/users/logout", {
+      await fetch("http://localhost:8005/users/logout", {
         method: "POST",
         credentials: "include",
       });
 
       setUserAuth(defaultAuth);
 
-      navigate("/home", { replace: true });
+      navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +72,7 @@ export default function Nav() {
       <div className="nav-container">
         <div className="logo">
           <Link
-            to="/Home"
+            to="/"
             onClick={() => {
               setAdminAccess(false);
             }}
@@ -100,7 +86,7 @@ export default function Nav() {
         <div className="links">
           <ul>
             <Link
-              to="/Home"
+              to="/"
               onClick={() => {
                 setAdminAccess(!adminState);
               }}

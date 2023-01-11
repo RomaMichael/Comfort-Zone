@@ -10,7 +10,7 @@ export function ProductProvider({ children }) {
     try {
       const res = await fetch("http://localhost:8005/products");
       const products = await res.json();
-      console.log(products);
+
       setProducts(products);
       setIsLoading(false);
     } catch (error) {

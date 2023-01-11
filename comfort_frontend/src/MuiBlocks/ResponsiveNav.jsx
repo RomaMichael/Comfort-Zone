@@ -47,7 +47,7 @@ export default function TemporaryDrawer({
       >
         <div className="menu-responsive">
           <h3>
-            <Link to="Home" style={{ textDecoration: "none", color: "black" }}>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
               HOME
             </Link>
           </h3>

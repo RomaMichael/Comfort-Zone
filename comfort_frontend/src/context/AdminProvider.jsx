@@ -16,7 +16,7 @@ export function AdminProvider({ children }) {
         credentials: "include",
       });
       const user = await response.json();
-      console.log(user);
+
       if (user._doc.role === "admin") {
         setAdminAuth(true);
       }

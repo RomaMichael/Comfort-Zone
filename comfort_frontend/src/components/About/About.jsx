@@ -8,7 +8,7 @@ export default function About() {
       <div className="title">
         <h3>
           <span>
-            <Link to="/Home">Home</Link>
+            <Link to="/">Home</Link>
           </span>{" "}
           <span> / About</span>
         </h3>
@@ -16,7 +16,7 @@ export default function About() {
       <div className="main-section">
         <div className="picture">
           <img
-            src="https://react-course-comfy-sloth-store.netlify.app/static/media/hero-bcg.a876f19f.jpeg"
+            src="https://tse1.mm.bing.net/th?id=OIP.ov0P-tFNP0ee7e7QjhnRTQHaFj&pid=Api&P=0"
             alt="picture"
           />
         </div>

@@ -2,6 +2,7 @@ const { User } = require("../model/user.model");
 const { validPassword } = require("../utility/crypto.utility");
 
 const verifyCallback = async (username, password, cb) => {
+  console.log("verify");
   const user = await User.findOne({ username }).lean();
 
   if (!user) {
@@ -17,6 +18,8 @@ const verifyCallback = async (username, password, cb) => {
 };
 
 const serialize = (user, cb) => {
+  console.log("serialize");
+
   try {
     return cb(null, user._id);
   } catch (error) {
@@ -25,6 +28,7 @@ const serialize = (user, cb) => {
 };
 
 const deserialize = async (userId, cb) => {
+  console.log("deserialize");
   try {
     const user = await User.findById(userId);
 

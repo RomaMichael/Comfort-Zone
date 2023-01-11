@@ -166,7 +166,7 @@ export default function Products() {
       <div className="products-title">
         <h3>
           <span>
-            <Link to="/Home">Home</Link>
+            <Link to="/">Home</Link>
           </span>{" "}
           <span> / Products</span>
         </h3>

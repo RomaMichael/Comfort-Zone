@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import moment from "moment";
 import { calcTotalSpent } from "./helpers/calc-total-spent";
+import { useProducts } from "./ProductProvider";
 
 const authContext = createContext();
 
@@ -11,6 +12,8 @@ export const defaultAuth = {
 
 export function AuthProvider({ children }) {
   const [userAuth, setUserAuth] = useState(defaultAuth);
+
+  const { fetchProducts } = useProducts();
 
   const checkAuth = async () => {
     const response = await fetch("http://localhost:8005/users/check-auth", {
@@ -29,6 +32,26 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     checkAuth();
   }, []);
+
+  const signIn = async (credentials) => {
+    console.log(credentials);
+    fetchProducts();
+    const response = await fetch("http://localhost:8005/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
+      credentials: "include",
+    });
+    const { user } = await response.json();
+
+    setUserAuth({ ...user, isLoggedIn: true });
+
+    if (response.status === 200) {
+      return response;
+    } else {
+      return false;
+    }
+  };
 
   const saveCartToDb = async (cartUpdate) => {
     await fetch(`http://localhost:8005/users/${userAuth._id}`, {
@@ -87,6 +110,7 @@ export function AuthProvider({ children }) {
     confirmAndAddOrder,
     updateTotalSpend,
     updateUserRole,
+    signIn,
   };
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
 }

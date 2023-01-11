@@ -13,6 +13,7 @@ const productSchema = new Schema({
   available: { type: Boolean, required: true },
   counter: { type: Number, required: true },
   img: { type: String, required: false },
+  views: { type: Number, required: true },
 });
 
 const Product = mongoose.model("Product", productSchema);

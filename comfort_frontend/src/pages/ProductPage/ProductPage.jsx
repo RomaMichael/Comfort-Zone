@@ -5,12 +5,44 @@ import ProductCounter from "../ProductCounter/ProductCounter";
 import RatingStars from "../../MuiBlocks/RatingStars";
 import { useProducts } from "../../context/ProductProvider";
 import { useAuthContext } from "../../context/AuthProvider";
+import { useEffect } from "react";
 
 export function ProductPage() {
   const { products } = useProducts();
   const { userAuth, setUserAuth, saveCartToDb } = useAuthContext();
   const params = useParams();
   const currentProduct = products.find((product) => product._id === params.id);
+  // const [productViews, setProductViews] = useState(currentProduct.views); ???
+
+  useEffect(() => {
+    // console.log(`before update ${productViews}`);
+    // setProductViews((prev) => prev + 1);    ???
+    currentProduct.views += 1;
+  }, []);
+
+  setTimeout(() => {
+    // console.log(`on update ${productViews}`);
+    updateViews();
+  }, 2000);
+
+  const updateViews = async () => {
+    try {
+      // console.log(`after update ${productViews}`);
+      await fetch(
+        `http://localhost:8005/products/update-product/${currentProduct._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...currentProduct,
+            views: currentProduct.views,
+          }),
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const [productCount, setProductCount] = useState(
     currentProduct ? currentProduct.counter : null
@@ -61,7 +93,7 @@ export function ProductPage() {
             <div className="title">
               <h3>
                 <span>
-                  <Link to="/Home"> Home /</Link>
+                  <Link to="/"> Home /</Link>
                 </span>
                 <span>
                   {" "}

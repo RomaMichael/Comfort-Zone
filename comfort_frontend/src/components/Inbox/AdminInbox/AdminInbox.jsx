@@ -54,7 +54,7 @@ export default function AdminInbox() {
   };
 
   const closeChats = () => {
-    setConversation((prev) => ({ ...prev, current: false }));
+    setConversation((prev) => ({ prev, current: false }));
   };
 
   const adminResponse = () => {

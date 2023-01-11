@@ -36,18 +36,18 @@ export default function Layout() {
   updateTotalSpend(userAuth.totalSpend);
 
   return (
-    <div>
+    <div style={{ minHeight: "700px" }}>
       <Routes>
-        <Route path="home" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="products" element={<Products setCart={setCart} />} />
-        <Route path="Cart" element={<Cart />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<Products setCart={setCart} />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="products/:id" element={<ProductPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="manageproducts" element={<ManageProducts />} />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="userProfile" element={<UserProfile />} />
-        <Route path="Inbox" element={<Inbox />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/manageproducts" element={<ManageProducts />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/Inbox" element={<Inbox />} />
       </Routes>
     </div>
   );

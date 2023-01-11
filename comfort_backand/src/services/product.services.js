@@ -6,8 +6,8 @@ const {
 } = require("../services/cloudinary.services");
 
 const getData = async () => {
-  const user = await Product.find();
-  return user;
+  const products = await Product.find();
+  return products;
 };
 
 const createProduct = async (product, file) => {
@@ -25,6 +25,7 @@ const createProduct = async (product, file) => {
 };
 
 const updateProduct = async (id, product) => {
+  console.log(product);
   try {
     const updatedProduct = await Product.findByIdAndUpdate(id, product, {
       new: true,

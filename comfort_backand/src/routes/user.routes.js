@@ -46,6 +46,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/register", upload.single("avatar"), async (req, res) => {
+  console.log("registration");
   if (req.file) {
     const user = await createUser(req.body, req.file);
 
@@ -57,6 +58,7 @@ router.post("/register", upload.single("avatar"), async (req, res) => {
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
+  console.log("login");
   try {
     const user = req.user;
 
@@ -76,6 +78,7 @@ router.delete("delete/:id", isAuth, async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
+  console.log("logout");
   req.logout((err) => {
     if (err) {
       res.json({ message: "Could not log out" });
